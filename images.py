@@ -3,9 +3,10 @@ from bson import json_util
 from rq import Queue
 
 from tg_falcon import page_results
-from trendi.constants import redis_conn
+from trendi.constants import redis_conn, q1,
 
 q1 = Queue('new_images', connection=redis_conn)
+
 
 class Resource(object):
     cors_headers = {'Access-Control-Allow-Origin': '*',
@@ -25,7 +26,7 @@ class Resource(object):
 
         if page_url:
             # ret = page_results.get_all_data_for_page(page_url) or {"page_url": page_url}
-            ret = paperdolls.search_existing_images(page_url)
+            # ret = paperdolls.search_existing_images(page_url)
         elif image_url:
             if exists:
                 ret = {"exists": page_results.image_exists(image_url)}
