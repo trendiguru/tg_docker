@@ -7,9 +7,9 @@ import logging
 import maxminddb
 import tldextract
 # ours
-from trendi import Utils
-from trendi import constants
-from trendi import find_similar_mongo
+# from trendi import Utils
+from . import constants
+# from trendi import find_similar_mongo
 # logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 db = constants.db
 start_pipeline = constants.q1
@@ -26,16 +26,17 @@ def has_results_from_collection(image_obj, collection):
     return False
 
 
-def add_results_from_collection(image_obj, collection):
-    for person in image_obj:
-        for item in person:
-            fp, similar_results = find_similar_mongo.find_top_n_results(number_of_results=100,
-                                                                        category_id=item['category'],
-                                                                        fingerprint=item['fp'],
-                                                                        collection=collection)
-            item['similar_results'][collection] = similar_results
-    db.images.replace_one({'_id': image_obj['_id']}, image_obj)
-    return True
+# TODO - enqueue jobs from here and create a Bolt that dequeues from it
+# def add_results_from_collection(image_obj, collection):
+#     for person in image_obj:
+#         for item in person:
+#             fp, similar_results = find_similar_mongo.find_top_n_results(number_of_results=100,
+#                                                                         category_id=item['category'],
+#                                                                         fingerprint=item['fp'],
+#                                                                         collection=collection)
+#             item['similar_results'][collection] = similar_results
+#     db.images.replace_one({'_id': image_obj['_id']}, image_obj)
+#     return True
 
 
 def get_collection_from_ip_and_domain(ip, domain):
@@ -73,9 +74,8 @@ def route(ip, images_list, page_url):
                 add_results_from_collection(image_obj, collection)
         else:
             ret[image_url] = False
-            start_pipeline.enqueue_call(func=pipeline.start_pipeline,
-                                        args=(page_url, image_url),
-                                        ttl=2000, result_ttl=2000, timeout=2000)
+            start_pipeline.enqueue_call(func='fiction.function', args=(page_url, image_url), ttl=2000, result_ttl=2000,
+                                        timeout=2000)
     return ret
 
 
