@@ -12,9 +12,6 @@ from . import constants
 # logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 db = constants.db
 start_pipeline = constants.q1
-lang = ""
-image_coll_name = "images"
-prod_coll_name = "products"
 geo_db_path = '/usr/local/lib/python2.7/dist-packages/maxminddb'
 
 
