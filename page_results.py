@@ -7,9 +7,8 @@ import logging
 import maxminddb
 import tldextract
 # ours
-# from trendi import Utils
+from . import Utils
 from . import constants
-# from trendi import find_similar_mongo
 # logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 db = constants.db
 start_pipeline = constants.q1
@@ -26,7 +25,6 @@ def has_results_from_collection(image_obj, collection):
     return False
 
 
-# TODO - enqueue jobs from here and create a Bolt that dequeues from it
 # def add_results_from_collection(image_obj, collection):
 #     for person in image_obj:
 #         for item in person:
@@ -71,7 +69,8 @@ def route(ip, images_list, page_url):
             else:
                 ret[image_url] = False
                 # GET RESULTS TO THIS GEO
-                add_results_from_collection(image_obj, collection)
+                # TODO - enqueue jobs from here and create a Bolt that dequeues from it
+                # add_results_from_collection(image_obj, collection)
         else:
             ret[image_url] = False
             start_pipeline.enqueue_call(func='fiction.function', args=(page_url, image_url), ttl=2000, result_ttl=2000,
