@@ -4,11 +4,12 @@ __author__ = 'jeremy'
 # theirs
 import hashlib
 import logging
-import maxminddb
+
 import tldextract
+
+
 # ours
-from . import Utils
-from . import constants
+from tg_api import constants, Utils
 # logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 db = constants.db
 start_pipeline = constants.q1

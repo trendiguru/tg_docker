@@ -1,7 +1,7 @@
-import falcon
 from bson import json_util
 from rq import Queue
 
+import falcon
 from . import page_results
 from . import constants
 
@@ -15,22 +15,24 @@ class Resource(object):
                     'Access-Control-Max-Age': 86400}
 
     def on_get(self, req, resp):
-        page_url = req.get_param("pageUrl")
-        image_url = req.get_param("imageUrl")
-        exists = req.get_param("exists")
-        relevant = req.get_param("relevant")
-        lang = req.get_param("lang")
+        # page_url = req.get_param("pageUrl")
+        # image_url = req.get_param("imageUrl")
+        # exists = req.get_param("exists")
+        # relevant = req.get_param("relevant")
+        # lang = req.get_param("lang")
+        #
+        # if lang:
+        #     page_results.set_lang(lang)
+        #
+        # if 'fashionseoul' in image_url:
+        #     products = "GangnhamStyle"
+        # else:
+        #     products = "ShopStyle"
+        # # products = determine with pageUrl
+        #
+        # ret = page_results.get_data_for_specific_image(image_url=image_url, products_collection=products)
 
-        if lang:
-            page_results.set_lang(lang)
-
-        if 'fashionseoul' in image_url:
-            products = "GangnhamStyle"
-        else:
-            products = "ShopStyle"
-        # products = determine with pageUrl
-
-        ret = page_results.get_data_for_specific_image(image_url=image_url, products_collection=products)
+        ret = {"hello": "world!"}
 
         resp.data = json_util.dumps(ret)
         resp.content_type = 'application/json'

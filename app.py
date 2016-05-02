@@ -1,5 +1,5 @@
 import falcon
-import images
+from tg_api import images
 
 api = application = falcon.API()
 images = images.Resource()
