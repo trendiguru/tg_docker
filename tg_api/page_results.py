@@ -9,7 +9,7 @@ import tldextract
 
 
 # ours
-from tg_api import constants, Utils
+from . import constants, Utils
 # logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 db = constants.db
 start_pipeline = constants.q1
