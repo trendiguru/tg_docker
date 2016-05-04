@@ -1,0 +1,41 @@
+version: '2'
+services:
+    mongodb:
+        image: mongo:3.2.5
+        volumes_from: 
+            - container:mongo-data
+        command:
+            - --storageEngine=wiredTiger
+        ports:
+            - "27017"
+
+    test:
+        stdin_open: true
+        tty: true
+        image: python:2.7.11
+        command:
+            - bash
+        links:
+            - nginx
+            - mongodb
+
+    falcon:
+#        stdin_open: true
+#        tty: true
+#        command: bash
+        image: test-falcon
+        ports:
+            - "8020"
+        links:
+            - mongodb
+
+    nginx:
+        image: nginx:alpine
+        ports:
+            - "80"
+        volumes:
+            - ./nginx/conf.d:/etc/nginx/conf.d
+        depends_on:
+            - falcon
+        links:
+            - falcon

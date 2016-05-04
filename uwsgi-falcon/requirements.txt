@@ -1,0 +1,7 @@
+falcon
+pymongo
+redis
+uwsgi
+Pillow
+numpy
+tldextract

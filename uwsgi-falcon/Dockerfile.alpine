@@ -1,0 +1,24 @@
+FROM python:2.7.11-alpine
+
+RUN apk --no-cache add git openssh
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Make ssh dir
+RUN mkdir /root/.ssh/
+
+# Copy over private key, and set permissions
+COPY id_rsa /root/.ssh/id_rsa
+
+# Create known_hosts
+RUN touch /root/.ssh/known_hosts
+# Add bitbucket key
+RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+
+RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
+RUN git clone git@github.com:trendiguru/tg_falcon.git 
+
+CMD ["sh"]
+
