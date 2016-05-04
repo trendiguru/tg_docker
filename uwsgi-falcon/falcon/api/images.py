@@ -32,7 +32,8 @@ class Resource(object):
         #
         # ret = page_results.get_data_for_specific_image(image_url=image_url, products_collection=products)
 
-        ret = {"hello": "world!"}
+        ret = {"hello": "world!", 
+                "collection_names": constants.db.collection_names()}
 
         resp.data = json_util.dumps(ret)
         resp.content_type = 'application/json'
