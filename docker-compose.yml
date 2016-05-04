@@ -15,9 +15,9 @@ services:
         image: python:2.7.11
         command:
             - bash
-        links:
-            - nginx
-            - mongodb
+        # links:
+        #     - nginx
+        #     - mongodb
 
     falcon:
 #        stdin_open: true
@@ -26,8 +26,8 @@ services:
         image: test-falcon
         ports:
             - "8020"
-        links:
-            - mongodb
+        # links:
+        #     - mongodb
 
     nginx:
         image: nginx:alpine
@@ -37,5 +37,5 @@ services:
             - ./nginx/conf.d:/etc/nginx/conf.d
         depends_on:
             - falcon
-        links:
-            - falcon
+        # links:
+        #     - falcon

@@ -1,8 +1,8 @@
 FROM python:2.7.11
 
 RUN apt-get -y update && \
-	apt-get -y install \
-	git \
+	apt-get -y install --no-install-recommends \
+	    git \
         ssh \     
      && rm -rf /var/lib/apt/lists/*
 
@@ -22,7 +22,8 @@ RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
-RUN git clone git@github.com:trendiguru/tg_falcon.git 
+#RUN git clone git@github.com:trendiguru/tg_falcon.git 
+COPY falcon tg_falcon
 
 COPY tg_falcon.ini /etc/uwsgi/tg_falcon.ini
 # RUN mkdir /var/log/uwsgi
