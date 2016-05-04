@@ -35,7 +35,7 @@ class Resource(object):
         ret = {"hello": "world!", 
                 "collection_names": constants.db.collection_names()}
 
-        resp.data = json_util.dumps(ret)
+        resp.data = json_util.dumps(ret) + "\n"
         resp.content_type = 'application/json'
         resp.status = falcon.HTTP_200
 
