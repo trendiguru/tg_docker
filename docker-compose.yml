@@ -9,6 +9,8 @@ services:
             - --storageEngine=wiredTiger
         ports:
             - "27017"
+        networks:
+            - front
 
     test:
         stdin_open: true
@@ -18,6 +20,8 @@ services:
             - bash
         depends_on:
             - falcon
+        networks:
+            - front
 
     falcon:
         image: test-falcon
@@ -25,6 +29,8 @@ services:
             - "8020"
         depends_on:
              - mongodb
+        networks:
+            - front
 
     nginx:
         image: nginx:alpine
@@ -34,4 +40,10 @@ services:
             - ./nginx/conf.d:/etc/nginx/conf.d
         depends_on:
             - falcon
+        networks:
+            - front
+
+networks:        
+    front:
+        driver: overlay
 
