@@ -12,7 +12,7 @@ class Resource(object):
     cors_headers = {'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Credentials': 'true',
                     'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE',
-                    'Access-Control-Max-Age': 86400}
+                    'Access-Control-Max-Age': '86400'}
 
     def on_get(self, req, resp):
         # page_url = req.get_param("pageUrl")
