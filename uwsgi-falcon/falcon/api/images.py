@@ -37,6 +37,7 @@ class Resource(object):
 
         resp.data = json_util.dumps(ret) + "\n"
         resp.content_type = 'application/json'
+        resp.set_headers(cors_headers)
         resp.status = falcon.HTTP_200
 
     def on_post(self, req, resp):
@@ -69,4 +70,5 @@ class Resource(object):
         
         resp.data = json_util.dumps(ret)
         resp.content_type = 'application/json'
+        resp.set_headers(cors_headers)
         resp.status = falcon.HTTP_200
