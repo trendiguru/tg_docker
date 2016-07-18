@@ -1,4 +1,5 @@
-FROM ubuntu:14.04
+FROM nvidia/cuda:7.5-cudnn5-devel
+#FROM ubuntu:14.04
 
 # To prevent `debconf: unable to initialize frontend: Dialog` error
 ENV DEBIAN_FRONTEND=noninteractive
