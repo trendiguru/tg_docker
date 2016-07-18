@@ -106,6 +106,7 @@ RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
+RUN chmod 400 ~/.ssh/id_rsa
 RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
 RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-packages/trendi
 
