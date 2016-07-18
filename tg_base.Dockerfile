@@ -86,6 +86,13 @@ WORKDIR /
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
+# Get the maxmind geoip db. TODO: have this auto-update
+WORKDIR /usr/local/lib/python2.7/dist-packages/maxminddb
+RUN wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz
+RUN gzip -d GeoLite2-Country.mmdb.gz 
+
+WORKDIR /
+
 # Make ssh dir
 RUN mkdir /root/.ssh/
 
