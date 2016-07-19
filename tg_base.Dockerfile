@@ -1,6 +1,9 @@
+#build using tg:base tag  (so that all the other dockerfiles FROM line works
+#nvidia-docker build -t tg:base -f tg_base.Dockerfile .
+
 #if this is happening on a gpu machine -
-FROM nvidia/cuda:7.5-cudnn5-runtime
-#possibly should be nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04 or FROM nvidia/cuda:7.5-cudnn5-devel
+FROM nvidia/cuda:7.5-cudnn5-devel
+#possibly should be nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04 or  nvidia/cuda:7.5-cudnn5-runtime. but devel is what;s used in the theano file
 
 #otherwise -
 #FROM ubuntu:14.04
