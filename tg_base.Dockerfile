@@ -1,6 +1,12 @@
 #build using tg:base tag  (so that all the other dockerfiles FROM line works
 #nvidia-docker build -t tg:base -f tg_base.Dockerfile .
 
+#push by installing gcloud sdk then along lines of:
+docker tag tg:base eu.gcr.io/test-paper-doll/tg/base:1
+gcloud docker push eu.gcr.io/test-paper-doll/tg/base:1
+#pull using
+docker pull eu.gcr.io/test-paper-doll/tg/base:1
+
 #if this is happening on a gpu machine -
 FROM nvidia/cuda:7.5-cudnn5-devel
 #possibly should be nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04 or  nvidia/cuda:7.5-cudnn5-runtime. but devel is what;s used in the theano file
