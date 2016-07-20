@@ -12,6 +12,11 @@
 ## Test nvidia-smi
 #nvidia-docker run --rm nvidia/cuda nvidia-smi
 
+###on receiving machine:
+###install python pip (for pyopenssl)
+#apt-get install python-pip
+#pip install pyopenssl
+
 ###build this image using tg:base tag  (so that all the other dockerfiles FROM line works
 #nvidia-docker build -t tg:base -f tg_base.Dockerfile .
 
