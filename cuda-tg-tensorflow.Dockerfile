@@ -1,6 +1,6 @@
 #from https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.gpu
-FROM nvidia/cuda:7.5-cudnn4-devel
-
+#FROM nvidia/cuda:7.5-cudnn4-devel
+FROM tg:base
 MAINTAINER Craig Citro <craigcitro@google.com>
 
 # Pick up some TF dependencies
