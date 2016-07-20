@@ -25,7 +25,8 @@
 
 
 #if this is happening on a gpu machine -
-FROM nvidia/cuda:7.5-cudnn5-devel
+FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04
+#FROM nvidia/cuda:7.5-cudnn5-devel
 #possibly should be nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04 or  nvidia/cuda:7.5-cudnn5-runtime. but devel is what;s used in the theano file
 
 #otherwise -
@@ -72,7 +73,6 @@ RUN wget https://bootstrap.pypa.io/get-pip.py
 
 RUN python get-pip.py
 RUN pip install numpy matplotlib
-RUN pip install ipython
 
 #dlib
 WORKDIR /
@@ -107,6 +107,7 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	-D BUILD_opencv_java=OFF \
 	-D WITH_IPP=OFF  \
 	-D WITH_TBB=ON \
+	-D BUILD_NEW_PYTHON_SUPPORT=ON \
 	-D WITH_QT=OFF ..
 
 RUN make -j$NUM_CORES
