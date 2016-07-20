@@ -26,8 +26,8 @@
 
 #if this is happening on a gpu machine -
 FROM nvidia/cuda:7.5-cudnn5-runtime
-#FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04
-#FROM nvidia/cuda:7.5-cudnn5-devel
+#FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04  #causes cv2 import error
+#FROM nvidia/cuda:7.5-cudnn5-devel  #causes cv2 import error
 #possibly should be nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04 or  nvidia/cuda:7.5-cudnn5-runtime. but devel is what;s used in the theano file
 
 #otherwise -
@@ -144,4 +144,5 @@ RUN chmod 400 ~/.ssh/id_rsa
 RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
 RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-packages/trendi
 
+RUN pip install ipython
 CMD ["bash"]
