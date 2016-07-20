@@ -150,4 +150,6 @@ RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
 RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-packages/trendi
 
 RUN pip install ipython
+
+RUN echo 'this is  a change'
 CMD ["bash"]

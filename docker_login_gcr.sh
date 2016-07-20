@@ -9,6 +9,7 @@ echo "docker pull google/cloud-sdk"
 docker pull google/cloud-sdk
 
 #this creates container with authenticated gcloud sdk
+docker rm gcloud-config
 echo "​docker run -v $(pwd):/tmp -t -i --name gcloud-config google/cloud-sdk gcloud auth activate-service-account $email --key-file /tmp/$keyfile --project $project_id"
 docker run -v $(pwd):/tmp -t -i --name gcloud-config google/cloud-sdk gcloud auth activate-service-account $email --key-file /tmp/$keyfile --project $project_id
 
