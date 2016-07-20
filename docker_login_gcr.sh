@@ -1,6 +1,6 @@
 
 email='braini-dockers@test-paper-doll.iam.gserviceaccount.com'
-keyfile='./test-paper-doll-ec1813a50ec0.p12'
+keyfile='test-paper-doll-ec1813a50ec0.p12'
 project_id='test-paper-doll'
 gcr_url='eu.gcr.io'
 
