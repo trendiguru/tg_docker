@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 email='braini-dockers@test-paper-doll.iam.gserviceaccount.com'
 keyfile='test-paper-doll-ec1813a50ec0.p12'
@@ -16,3 +17,7 @@ token=$(docker run --rm -ti --volumes-from gcloud-config google/cloud-sdk gcloud
 
 echo "docker login -e $email -u _token -p $token https://$gcr_url"
 docker login -e $email -u _token -p $token https://$gcr_url
+
+
+
+ #
