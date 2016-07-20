@@ -18,7 +18,8 @@ token="$(docker run --rm -ti --volumes-from gcloud-config google/cloud-sdk gclou
 echo $token
 
 echo "docker login -u _token -p $token https://$gcr_url"
-docker login -u oauth2accesstoken -p $token https://$gcr_url
+#docker login -u oauth2accesstoken -p $token https://$gcr_url
+docker login -u _json_key -p "$(cat test-paper-doll-0e7488b90747.json)" https://$gcr_url
 
 docker pull eu.gcr.io/test-paper-doll/tg/base:1
 
