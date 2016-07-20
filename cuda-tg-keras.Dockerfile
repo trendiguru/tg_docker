@@ -1,4 +1,4 @@
-# Start with CUDA Theano base image
+#  Start with CUDA Theano base image
 #FROM kaixhin/cuda-theano:latest
 FROM tg:theano
 MAINTAINER Kai Arulkumaran <design@kaixhin.com>
