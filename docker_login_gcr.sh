@@ -7,6 +7,8 @@ gcr_url='eu.gcr.io'
 docker pull google/cloud-sdk
 
 #this creates container with authenticated gcloud sdk
+echo "​docker run -v $(pwd):/tmp -t -i --name gcloud-config google/cloud-sdk gcloud auth activate-service-account $email --key-file /tmp/$keyfile --project $project_id"
+
 ​docker run -v $(pwd):/tmp -t -i --name gcloud-config google/cloud-sdk gcloud auth activate-service-account $email --key-file /tmp/$keyfile --project $project_id
 
 
