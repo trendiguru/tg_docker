@@ -1,4 +1,42 @@
-FROM ubuntu:14.04
+###install google cloud sdk to be able to push/pull
+#export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+#echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
+#apt-get install curl
+#curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+#sudo apt-get update && sudo apt-get install google-cloud-sdk
+#gcloud init
+
+### install nvidia-docker
+#wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.0-rc.3/nvidia-docker_1.0.0.rc.3-1_amd64.deb
+#sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
+## Test nvidia-smi
+#nvidia-docker run --rm nvidia/cuda nvidia-smi
+
+###on receiving machine:
+###install python pip (for pyopenssl)
+#apt-get install python-pip
+#pip install pyopenssl
+
+###build this image using tg:base tag  (so that all the other dockerfiles FROM line works
+#nvidia-docker build -t tg:base -f tg_base.Dockerfile .
+
+###push by installing gcloud sdk then along lines of:
+#docker tag tg:base eu.gcr.io/test-paper-doll/tg/base:1
+#gcloud docker push eu.gcr.io/test-paper-doll/tg/base:1
+
+###pull using
+#docker run --rm -ti --volumes-from gcloud-config google/cloud-sdk gcloud auth print-access-token
+#docker pull eu.gcr.io/test-paper-doll/tg/base:1
+
+
+#if this is happening on a gpu machine -
+FROM nvidia/cuda:7.5-cudnn5-runtime
+#FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04  #causes cv2 import error
+#FROM nvidia/cuda:7.5-cudnn5-devel  #causes cv2 import error
+#possibly should be nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04 or  nvidia/cuda:7.5-cudnn5-runtime. but devel is what;s used in the theano file
+
+#otherwise -
+#FROM ubuntu:14.04
 
 # To prevent `debconf: unable to initialize frontend: Dialog` error
 ENV DEBIAN_FRONTEND=noninteractive
@@ -75,6 +113,7 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	-D BUILD_opencv_java=OFF \
 	-D WITH_IPP=OFF  \
 	-D WITH_TBB=ON \
+	-D BUILD_NEW_PYTHON_SUPPORT=ON \
 	-D WITH_QT=OFF ..
 
 RUN make -j$NUM_CORES
@@ -106,7 +145,11 @@ RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
+RUN chmod 400 ~/.ssh/id_rsa
 RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
 RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-packages/trendi
 
+RUN pip install ipython
+
+RUN echo 'this is  a change'
 CMD ["bash"]

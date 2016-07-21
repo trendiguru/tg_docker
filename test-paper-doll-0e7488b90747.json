@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "test-paper-doll",
+  "private_key_id": "0e7488b907473a471bf81d0efc23d57d3cb27915",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCV0URfCTMgaDv8\nICmSPOlc8VMM48eVvtCzRCFx89zJq1UYC/v5OINIswbvOX85EKWKXYvLlBcx2xom\nI5DCU/+Y8ruoJ+abiDlOXl8LzPC4H1DAEZdvxz2JdJOBilpoiXlYwf8+uRW1tAVx\nLK0zlO2Rx6DBVWhHb8obcw/oKzHijeodUnh8/IsBNwRxWqptAGuqt2cv473O9377\n4DUcRZJzDGCRuI7raapkRcYz+19v5fEgRn8Uh8eQxOewyayfmW/PXe78TWQ1nVIu\nyqDsHU+QhF4euB5hapD48yGNh3bCguS0M/hAJfAngvRM+bIFbyByfHswCYI24RJv\nqx2IUeBjAgMBAAECggEBAI6y5/O5mIgaoGAS5mXTPNf5SIizgQxB1xmZIF4g0EEK\nv5+K8rM8P9gEJevAkUxybarwVVJQOROUxUBkieJ/DarKMTIG52FnjGX3/4IG75YA\nxfJcDyk51oRRlJpDhL+jigCfr5Y3xtTupmxZCJRkGzDKu3TK++tnMFOa8iDK29YU\nrtuyZKroobXy2AW4M5pVK8OASPLdUsWQFjlViwmWdqdY5lMsiF11QUmF4FfygKhP\niz6XMcOsg4ns7Nh1NC1fOkaDNXE9KIA9ob5EcErH1sPYwCSVjW+HHNoyzNrN6vKa\n0J1eyUAgP0z6gKWJ1qM7QshutmK0KQqb73+eCGvTdOkCgYEAzRlrcQAxsNaxuVKk\nU/14Fx/jH3xIAM1suhdbeU9kOFpjZCJarIKAzkdhWK2SumcMAcTXj/cpXSrBjbgS\nPx5EjFmsg5SQnzrfq8xNl2rVWlGIesxu3n/ak1SQvBC82Jzw+C4ZfK46Hmixc/WN\nejrQ7HiqORS0aL8RrX6JjICL9qUCgYEAuv+fwF+9Q0xdSJ/M18fajlLItpj4jPuw\nwQHZpPT4WYK6Om4qbBUJVDJaORCqATgDONwaIH3vZjWimr3zy/drdDYoVXeECVvY\nUbPXGzM8zhQC0I/U9cMwFP8QbKQtzX/dJgxtfEaXS30BZzXHoTJJ9YruUYEnvBRs\n4epFoH3t1GcCgYEAsUMhCx9B0zcbj7KPeE//tOzIXfQKPzdMm2GIm8Y0NkhY0rim\naaa5MI+c4QnTYOujAvxf2nuh8nX7p0LJ8md0k2EFqwuCGzzFCDShcxbQoykIril2\nQTN7dA6IsSI+NXEfC0C8onfqn1GY3UIDLvsaiuaXKJJugoFxA+Pzec24KkkCgYBh\nD8f60XbqlJui05c+tXSjBSM7bCEvBIFVXUF8Fs9Fns5M/9uzKCQkeNJN5nFnmoxJ\nmi1RiiyV7+cLzObbivxSYL4ExrlZJjwdBGz1qF26Vba0TMPsILk3XMFIsts3XFQM\nqMy3geiL/UGaMdcBu5maAtf6pEBcpnlxtekYCeVFpwKBgC0x5POSuPlbyDF3ijDV\nphM3c1unKbcBNDC7yPbWc7hP3hTHnvnQ1zcrhtHbH1mPfyz4xOioyLO7EuF+MGcB\nYhYpKHk9Rf/ae5iH17fsp8fgIDtqL+pa420iq6zaJIqKt/67rABAvaYlmEVjQ32z\nQ5dzvFGBBUque5Y3HPnFU9KW\n-----END PRIVATE KEY-----\n",
+  "client_email": "braini-dockers@test-paper-doll.iam.gserviceaccount.com",
+  "client_id": "118078433195944294586",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/braini-dockers%40test-paper-doll.iam.gserviceaccount.com"
+}
