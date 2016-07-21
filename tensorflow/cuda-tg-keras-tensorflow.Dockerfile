@@ -1,5 +1,5 @@
 #use cudnn4 for tensorflow compatibility
-FROM tg:base_cudnn4
+FROM tg/base:cudnn4
 MAINTAINER Kai Arulkumaran <design@kaixhin.com>
 
 ########tf
