@@ -6,7 +6,7 @@ project_id='test-paper-doll'
 gcr_url='eu.gcr.io'
 
 echo "docker pull google/cloud-sdk"
-docker pull google/cloud-sdk
+docker pull google/cloud-sdkdocker images
 
 #this creates container with authenticated gcloud sdk
 docker rm gcloud-config
