@@ -21,3 +21,5 @@ httplib2
 h5py
 requests
 oauth2client
+ipython
+
