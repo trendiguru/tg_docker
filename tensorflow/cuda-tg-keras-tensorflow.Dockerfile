@@ -1,13 +1,12 @@
-#  Start with CUDA Theano base image
-#FROM kaixhin/cuda-theano:latest
-FROM tg:base
+#use cudnn4 for tensorflow compatibility
+FROM tg:base_cudnn4
 MAINTAINER Kai Arulkumaran <design@kaixhin.com>
 
 ########tf
 #from https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.gpu
 #FROM nvidia/cuda:7.5-cudnn4-devel
-FROM tg:base
-MAINTAINER Craig Citro <craigcitro@google.com>
+#FROM tg:base
+#MAINTAINER Craig Citro <craigcitro@google.com>
 
 # Pick up some TF dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
