@@ -30,6 +30,7 @@ ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
 
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
+# TODO: make sure python layer is enabled , myabe with cmake ardument like below or by changing Makefile.config #
 ENV CLONE_TAG=master
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \
