@@ -150,7 +150,8 @@ RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 RUN chmod 400 ~/.ssh/id_rsa
-RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
+#RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
+#hitting host key verification failed
 RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-packages/trendi
 
 #things that didnt come up in requirements.txt for whatever reason
