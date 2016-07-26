@@ -80,6 +80,7 @@ RUN wget https://bootstrap.pypa.io/get-pip.py
 RUN python get-pip.py
 RUN pip install numpy matplotlib
 
+
 #dlib
 WORKDIR /
 RUN git clone https://github.com/davisking/dlib.git
@@ -149,7 +150,9 @@ RUN chmod 400 ~/.ssh/id_rsa
 RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
 RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-packages/trendi
 
+#things that didnt come up in requirements.txt for whatever reason
 RUN pip install ipython
+RUN pip install joblib
 RUN apt-get update
 RUN apt-get install -y nano
 
