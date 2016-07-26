@@ -39,7 +39,8 @@ ENV CLONE_TAG=master
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git .
 RUN for req in $(cat python/requirements.txt) pydot; do pip install $req; done
-RUN mkdir build && cd build
+RUN mkdir build
+RUN cd build
 RUN cmake -DUSE_CUDNN=1 -DBUILD_python=1 -DBUILD_python_layer=1 ..
 RUN make all -j"$(nproc)"
 RUN make install
