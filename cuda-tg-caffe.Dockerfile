@@ -37,13 +37,13 @@ ENV CLONE_TAG=master
 #by installing with GPU support, which apparently requires more than cmake -DUSE_CUDNN...which is actually on by default
 #now trying addition of make install and make runtest (http://caffe.berkeleyvision.org/installation.html#compilation)
 
-RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \
-    for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
-    mkdir build && cd build && \
-    cmake -DUSE_CUDNN=1 -DBUILD_python=1 -DBUILD_python_layer=1 .. && \
-    make all -j"$(nproc)" && \
-    make install && \
-    make runtest
+RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git .
+RUN for req in $(cat python/requirements.txt) pydot; do pip install $req; done
+RUN mkdir build && cd build
+RUN cmake -DUSE_CUDNN=1 -DBUILD_python=1 -DBUILD_python_layer=1 ..
+RUN make all -j"$(nproc)"
+RUN make install
+RUN make runtest
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
