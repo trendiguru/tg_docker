@@ -30,7 +30,7 @@ ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
 
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
-# TODO: make sure python layer is enabled , myabe with cmake ardument like below or by changing Makefile.config #
+# TODO: make sure python layer is enabled , myabe with cmake argument like below or by changing Makefile.config #
 ENV CLONE_TAG=master
 
 #avoid this "Cannot use GPU in CPU-only Caffe: check mode."
@@ -41,8 +41,8 @@ RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \
     for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
     mkdir build && cd build && \
     cmake -DUSE_CUDNN=1 .. && \
-    make all -j"$(nproc)" \
-    make install \
+    make all -j"$(nproc)" && \
+    make install && \
     make runtest
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
