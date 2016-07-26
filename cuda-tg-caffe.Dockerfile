@@ -42,6 +42,7 @@ RUN for req in $(cat python/requirements.txt) pydot; do pip install $req; done
 RUN mkdir build
 #RUN cd build
 WORKDIR build
+RUN ls
 
 RUN cmake -DUSE_CUDNN=1 -DBUILD_python=1 -DBUILD_python_layer=1 ..
 RUN make all -j"$(nproc)"
