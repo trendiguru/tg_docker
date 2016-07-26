@@ -30,7 +30,10 @@
 
 
 #if this is happening on a gpu machine -
-FROM nvidia/cuda:7.5-cudnn5-runtime
+#FROM nvidia/cuda:7.5-cudnn5-runtime
+#see https://github.com/NVIDIA/nvidia-docker/issues/153 - we want devel, runtime is if we have deb/rpm/pip packages compiled for the project...
+FROM nvidia/cuda:7.5-cudnn5-devel
+
 #FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04  #causes cv2 import error
 #FROM nvidia/cuda:7.5-cudnn5-devel  #causes cv2 import error
 #possibly should be nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04 or  nvidia/cuda:7.5-cudnn5-runtime. but devel is what;s used in the theano file

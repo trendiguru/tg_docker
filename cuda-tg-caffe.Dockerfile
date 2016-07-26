@@ -26,8 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-scipy && \
     rm -rf /var/lib/apt/lists/*
 
-ENV CAFFE_ROOT=/opt/caffe
-WORKDIR $CAFFE_ROOT
+
 
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
 # TODO: make sure python layer is enabled , myabe with cmake argument like below or by changing Makefile.config #
@@ -37,14 +36,19 @@ ENV CLONE_TAG=master
 #by installing with GPU support, which apparently requires more than cmake -DUSE_CUDNN...which is actually on by default
 #now trying addition of make install and make runtest (http://caffe.berkeleyvision.org/installation.html#compilation)
 
-RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git .
+WORKDIR /opt
+RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git
+#RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git .
+ENV CAFFE_ROOT=/opt/caffe
+WORKDIR $CAFFE_ROOT
+#WORKDIR caffe
 RUN for req in $(cat python/requirements.txt) pydot; do pip install $req; done
 RUN mkdir build
 #RUN cd build
 WORKDIR build
 RUN ls
 
-RUN cmake -DUSE_CUDNN=1 -DBUILD_python=1 -DBUILD_python_layer=1 ..
+RUN cmake -DUSE_CUDNN=ON -DBUILD_python=ON -DBUILD_python_layer=ON ..
 RUN make all -j"$(nproc)"
 RUN make install
 RUN make runtest
