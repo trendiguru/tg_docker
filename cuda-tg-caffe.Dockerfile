@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-scipy && \
     rm -rf /var/lib/apt/lists/*
 
-
+#apt-get update && apt-get install -y --no-install-recommends  build-essential cmake  git  wget  libatlas-base-dev libboost-all-dev libgflags-dev libgoogle-glog-dev libhdf5-serial-dev libleveldb-dev liblmdb-dev libopencv-dev libprotobuf-dev libsnappy-dev  protobuf-compiler python-dev python-numpy python-pip  python-scipy
 
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
 # TODO: make sure python layer is enabled , myabe with cmake argument like below or by changing Makefile.config #
@@ -53,7 +53,7 @@ RUN ldconfig
 RUN cmake -DUSE_CUDNN=ON -DBUILD_python=ON -DBUILD_python_layer=ON ..
 RUN make all -j"$(nproc)"
 RUN make install
-RUN make runtest
+#RUN make runtest
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
