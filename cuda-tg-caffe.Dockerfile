@@ -48,6 +48,8 @@ RUN mkdir build
 WORKDIR build
 RUN ls
 
+RUN ldconfig
+
 RUN cmake -DUSE_CUDNN=ON -DBUILD_python=ON -DBUILD_python_layer=ON ..
 RUN make all -j"$(nproc)"
 RUN make install
