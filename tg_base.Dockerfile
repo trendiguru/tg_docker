@@ -76,6 +76,7 @@ RUN apt-get update && \
 		libjpeg-dev \
 		libtiff-dev \
 		libhdf5-dev \
+		nano \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN wget https://bootstrap.pypa.io/get-pip.py
@@ -159,8 +160,6 @@ RUN chmod 400 ~/.ssh/id_rsa
 RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
 RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-packages/trendi
 
-#things that didnt come up in requirements.txt for whatever reason
-RUN apt-get update
-RUN apt-get install -y nano
+#things that didnt come up in requirements.txt for whatever reasonRUN apt-get update
 
 CMD ["bash"]
