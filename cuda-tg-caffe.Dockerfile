@@ -53,7 +53,7 @@ RUN ldconfig
 RUN cmake -DUSE_CUDNN=ON -DBUILD_python=ON -DBUILD_python_layer=ON ..
 RUN make all -j"$(nproc)"
 RUN make install
-#RUN make runtest
+#RUN make runtest  #you can't run gpu stuff from a dockerfile....jesus ...https://github.com/NVIDIA/nvidia-docker/issues/153
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH

@@ -3,6 +3,7 @@ falcon
 falcon-cors
 maxminddb
 jaweson
+msgpack-python
 annoy
 pymongo
 redis
