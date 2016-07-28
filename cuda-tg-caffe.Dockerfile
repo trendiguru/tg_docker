@@ -1,5 +1,5 @@
 #from https://github.com/BVLC/caffe/blob/master/docker/standalone/gpu/Dockerfile
-FROM tg:base
+FROM tg/base:1
 
 #FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04
 MAINTAINER caffe-maint@googlegroups.com
