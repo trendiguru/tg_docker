@@ -126,7 +126,7 @@ RUN make -j$NUM_CORES
 RUN make install && make clean
 RUN ldconfig
 #for some reason the cv2.so isnt put anywhere useful.
-RUN ln -s /opencv/build/lib/cv2.so /usr/lib/python2.7/dist-packages/trendi
+RUN ln -s /opencv/build/lib/cv2.so /usr/lib/python2.7/dist-packages/
 
 
 WORKDIR /
@@ -160,8 +160,6 @@ RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
 RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-packages/trendi
 
 #things that didnt come up in requirements.txt for whatever reason
-RUN pip install ipython
-RUN pip install joblib
 RUN apt-get update
 RUN apt-get install -y nano
 

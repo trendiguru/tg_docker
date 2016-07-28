@@ -23,4 +23,4 @@ h5py
 requests
 oauth2client
 ipython
-
+joblib
