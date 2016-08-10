@@ -77,6 +77,7 @@ RUN apt-get update && \
 		libtiff-dev \
 		libhdf5-dev \
 		nano \
+		screen \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN wget https://bootstrap.pypa.io/get-pip.py
