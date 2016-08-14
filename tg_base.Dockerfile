@@ -54,6 +54,13 @@ ENV NUM_CORES 32
 
 RUN NUM_CORES=$(nproc)
 
+########
+#if you run into trouble with i386 requirements do this first: (the libc6 was something i happened to need)
+#RUN dpkg --add-architecture i386
+#RUN apt-get update
+#RUN apt-get install libc6-dbg
+#RUN apt-get install libc6-dbg:i386
+
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
 		ca-certificates \
