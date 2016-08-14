@@ -28,6 +28,10 @@
 #docker run --rm -ti --volumes-from gcloud-config google/cloud-sdk gcloud auth print-access-token
 #docker pull eu.gcr.io/test-paper-doll/tg/base:1
 
+###run using something along the lines of:
+#nvidia-docker run  -v /home/jeremy/caffenets:/home/jeremy/caffenets -v  /home/jeremy/image_dbs:/home/jeremy/image_dbs -it --name jr2 tg/caffe:1 /bin/bash
+# where -v links directories bet. container and host
+
 
 #if this is happening on a gpu machine -
 #FROM nvidia/cuda:7.5-cudnn5-runtime
