@@ -30,7 +30,7 @@
 
 ###run using something along the lines of:
 #nvidia-docker run  -v /home/jeremy/caffenets:/home/jeremy/caffenets -v  /home/jeremy/image_dbs:/home/jeremy/image_dbs -it --name jr2 tg/caffe:1 /bin/bash
-# where -v links directories bet. container and host
+# where -v links directories bet. container and host #
 
 
 #if this is happening on a gpu machine -
