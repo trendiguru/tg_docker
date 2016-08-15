@@ -80,8 +80,8 @@ RUN rm -Rf thrust/*
 RUN cd thrust
 RUN rm -rf *
 RUN cd ..
-RUN rmdir thrust
-RUN ls
+#RUN rmdir thrust
+RUN ls thrust
 RUN cd thrust_git
 RUN mv thrust ..
 RUN ls
