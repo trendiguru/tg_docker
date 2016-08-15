@@ -75,7 +75,9 @@ RUN git clone https://github.com/thrust/thrust.git
 RUN mv thrust/ thrust_git
 RUN pwd
 RUN ls
-RUN rm -rf thrust
+RUN rm -Rf thrust
+RUN rm -Rf thrust/*
+RUN rm -Rf thrust/.*
 RUN cd thrust
 RUN rm -rf *
 RUN cd ..
@@ -87,6 +89,8 @@ RUN ls
 RUN cd ..
 RUN ls
 RUN ls thrust
+
+
 
 #RUN wget https://github.com/Itseez/opencv_contrib/archive/${OPENCV_VERSION}.zip -O opencv_contrib3.zip
 #RUN unzip -q opencv_contrib3.zip
