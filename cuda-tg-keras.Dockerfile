@@ -1,4 +1,6 @@
-#  Start with CUDA Theano base image
+#  Start with CUDA Theano base image,. e.g.
+#nvidia-docker build -t tg:keras -f cuda-tg-keras.Dockerfile .
+
 #FROM kaixhin/cuda-theano:latest
 FROM tg:theano
 MAINTAINER Kai Arulkumaran <design@kaixhin.com>

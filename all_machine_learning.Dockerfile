@@ -1,3 +1,5 @@
+#original  at https://github.com/saiprashanths/dl-docker/edit/master/Dockerfile.gpu
+
 FROM nvidia/cuda:7.5-cudnn4-devel
 
 MAINTAINER Sai Soundararaj <saip@outlook.com>
