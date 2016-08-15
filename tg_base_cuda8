@@ -74,13 +74,15 @@ RUN mv thrust/ thrust_old
 RUN git clone https://github.com/thrust/thrust.git
 RUN mv thrust thrust_git
 RUN pwd
-RUN mv ./thrust_git/thrust ./thrust
+RUN cd thrust_git
+RUN mv thrust ..
 
 #RUN wget https://github.com/Itseez/opencv_contrib/archive/${OPENCV_VERSION}.zip -O opencv_contrib3.zip
 #RUN unzip -q opencv_contrib3.zip
 #RUN mv /opencv_contrib-${OPENCV_VERSION} /opencv_contrib
 #RUN rm opencv_contrib3.zip
 
+WORKDIR /opencv
 RUN mkdir /opencv/build
 WORKDIR /opencv/build
 
