@@ -60,7 +60,7 @@ RUN python setup.py install --yes USE_AVX_INSTRUCTIONS
 #OpenCV
 WORKDIR /
 #######
-#cuda8 requires newer opencv so git clone repo instead of wget zip
+#cuda8 requires newer opencv so git clone repo instead of wget zip #
 #######
 #RUN wget https://github.com/Itseez/opencv/archive/${OPENCV_VERSION}.zip -O opencv3.zip
 #RUN unzip -q opencv3.zip
