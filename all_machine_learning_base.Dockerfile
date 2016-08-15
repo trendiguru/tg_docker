@@ -125,6 +125,7 @@ RUN git clone -b ${CAFFE_VERSION} --depth 1 https://github.com/BVLC/caffe.git /r
 	cd /root/caffe && \
 	cat python/requirements.txt | xargs -n1 pip install && \
 	mkdir build && cd build && \
+	#### below is the only line jr changed from the original  at https://github.com/saiprashanths/dl-docker/edit/master/Dockerfile.gpu
 	cmake -DUSE_CUDNN=1 -DBLAS=Open -DBUILD_python=ON -DBUILD_python_layer=ON .. && \
 	make -j"$(nproc)" all && \
 	make install
