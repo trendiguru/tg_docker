@@ -137,7 +137,8 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 
 #cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=$(python -c "import sys; print(sys.prefix)") -D PYTHON_EXECUTABLE=$(which python) -D BUILD_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_TESTS=OFF -D BUILD_opencv_java=OFF -D WITH_IPP=OFF -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_QT=OFF ..
 
-RUN make -j$NUM_CORES
+#RUN make -j$NUM_CORES  #hit error:  The command '/bin/sh -c make -j$NUM_CORES' returned a non-zero code: 2
+RUN make -j24
 RUN make install && make clean
 RUN ldconfig
 #for some reason the cv2.so isnt put anywhere useful.
