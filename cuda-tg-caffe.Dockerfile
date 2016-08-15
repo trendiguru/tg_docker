@@ -43,6 +43,7 @@ ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
 #WORKDIR caffe
 RUN for req in $(cat python/requirements.txt) pydot; do pip install $req; done
+
 RUN mkdir build
 #RUN cd build
 WORKDIR build

@@ -18,7 +18,8 @@
 #pip install pyopenssl
 
 ###build this image using tg:base tag  (so that all the other dockerfiles FROM line works
-#nvidia-docker build -t tg:base -f tg_base.Dockerfile .
+#nvidia-docker build -t tg/base:1 -f tg_base.Dockerfile .
+#nvidia-docker build -t tg/caffe:1 -f cuda-tg-caffe.Dockerfile .
 
 ###push by installing gcloud sdk then along lines of:
 #docker tag tg:base eu.gcr.io/test-paper-doll/tg/base:1
@@ -36,7 +37,8 @@
 #if this is happening on a gpu machine -
 #FROM nvidia/cuda:7.5-cudnn5-runtime
 #see https://github.com/NVIDIA/nvidia-docker/issues/153 - we want devel, runtime is if we have deb/rpm/pip packages compiled for the project...
-FROM nvidia/cuda:7.5-cudnn5-devel
+#FROM nvidia/cuda:7.5-cudnn5-devel  #caffe calling python calling cv2 functions segfaults with this, try 8.0
+FROM nvidia/cuda:8.0-cudnn5-devel
 
 #FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04  #causes cv2 import error
 #FROM nvidia/cuda:7.5-cudnn5-devel  #causes cv2 import error
@@ -105,7 +107,7 @@ RUN python setup.py install --yes USE_AVX_INSTRUCTIONS
 
 #OpenCV
 WORKDIR /
-RUN wget https://github.com/Itseez/opencv/archive/${OPENCV_VERSION}.zip -O opencv3.zip 
+RUN wget https://github.com/Itseez/opencv/archive/${OPENCV_VERSION}.zip -O opencv3.zip
 RUN unzip -q opencv3.zip 
 RUN mv /opencv-${OPENCV_VERSION} /opencv 
 RUN	rm opencv3.zip
