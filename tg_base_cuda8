@@ -68,6 +68,10 @@ WORKDIR /
 #RUN	rm opencv3.zip
 #https://github.com/opencv/opencv.git
 RUN git clone https://github.com/opencv/opencv.git
+#fix thrust issue between cuda8 and opencv
+WORKDIR /usr/local/cuda/include
+RUN mv thrust/ thrust_old
+RUN git clone https://github.com/thrust/thrust.git
 
 
 #RUN wget https://github.com/Itseez/opencv_contrib/archive/${OPENCV_VERSION}.zip -O opencv_contrib3.zip
