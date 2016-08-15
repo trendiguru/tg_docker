@@ -1,4 +1,4 @@
-FROM tg:base/all_machine_learning
+FROM tg/base:all_machine_learning
 
 # To prevent `debconf: unable to initialize frontend: Dialog` error
 ENV DEBIAN_FRONTEND=noninteractive
