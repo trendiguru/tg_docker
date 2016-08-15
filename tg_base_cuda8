@@ -77,7 +77,6 @@ RUN pwd
 RUN ls
 RUN rm -Rf thrust
 RUN rm -Rf thrust/*
-RUN rm -Rf thrust/.*
 RUN cd thrust
 RUN rm -rf *
 RUN cd ..
