@@ -72,7 +72,8 @@ RUN git clone https://github.com/opencv/opencv.git
 WORKDIR /usr/local/cuda/include
 RUN mv thrust/ thrust_old
 RUN git clone https://github.com/thrust/thrust.git
-
+RUN mv thrust thrust_git
+RUN mv thrust_git/thrust thrust
 
 #RUN wget https://github.com/Itseez/opencv_contrib/archive/${OPENCV_VERSION}.zip -O opencv_contrib3.zip
 #RUN unzip -q opencv_contrib3.zip
