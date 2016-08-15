@@ -83,13 +83,13 @@ RUN rm -Rf thrust/*
 #RUN cd ..
 #RUN rmdir thrust
 RUN ls
-RUN mv thrust_git/thrust thrust
+RUN cp thrust_git/thrust thrust
 #RUN cd thrust_git
 #RUN mv thrust ..
 RUN ls
 #RUN cd ..
 #RUN ls
-RUN ls thrust
+RUN ls -l thrust/
 
 
 
@@ -102,6 +102,7 @@ WORKDIR /opencv
 RUN mkdir /opencv/build
 WORKDIR /opencv/build
 
+RUN ls /usr/local/cuda/include/thrust
 
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	-D CMAKE_INSTALL_PREFIX=$(python -c "import sys; print(sys.prefix)") \
