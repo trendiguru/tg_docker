@@ -82,11 +82,12 @@ RUN rm -rf *
 RUN cd ..
 #RUN rmdir thrust
 RUN ls thrust
-RUN cd thrust_git
-RUN mv thrust ..
+RUN mv thrust_git/thrust thrust
+#RUN cd thrust_git
+#RUN mv thrust ..
 RUN ls
-RUN cd ..
-RUN ls
+#RUN cd ..
+#RUN ls
 RUN ls thrust
 
 
