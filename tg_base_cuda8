@@ -76,6 +76,9 @@ RUN mv thrust/ thrust_git
 RUN pwd
 RUN ls
 RUN rm -rf thrust
+RUN cd thrust
+RUN rm -rf *
+RUN cd ..
 RUN rmdir thrust
 RUN ls
 RUN cd thrust_git
