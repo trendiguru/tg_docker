@@ -1,50 +1,4 @@
-###install google cloud sdk to be able to push/pull
-#export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
-#echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
-#apt-get install curl
-#curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-#sudo apt-get update && sudo apt-get install google-cloud-sdk
-#gcloud init
-
-### install nvidia-docker
-#wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.0-rc.3/nvidia-docker_1.0.0.rc.3-1_amd64.deb
-#sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
-## Test nvidia-smi
-#nvidia-docker run --rm nvidia/cuda nvidia-smi
-
-###on receiving machine:
-###install python pip (for pyopenssl)
-#apt-get install python-pip
-#pip install pyopenssl
-
-###build this image using tg:base tag  (so that all the other dockerfiles FROM line works
-#nvidia-docker build -t tg/base:1 -f tg_base.Dockerfile .
-#nvidia-docker build -t tg/caffe:1 -f cuda-tg-caffe.Dockerfile .
-
-###push by installing gcloud sdk then along lines of:
-#docker tag tg:base eu.gcr.io/test-paper-doll/tg/base:1
-#gcloud docker push eu.gcr.io/test-paper-doll/tg/base:1
-
-###pull using
-#docker run --rm -ti --volumes-from gcloud-config google/cloud-sdk gcloud auth print-access-token
-#docker pull eu.gcr.io/test-paper-doll/tg/base:1
-
-###run using something along the lines of:
-#nvidia-docker run  -v /home/jeremy/caffenets:/home/jeremy/caffenets -v  /home/jeremy/image_dbs:/home/jeremy/image_dbs -it --name jr2 tg/caffe:1 /bin/bash
-# where -v links directories bet. container and host #
-
-
-#if this is happening on a gpu machine -
-#FROM nvidia/cuda:7.5-cudnn5-runtime
-#see https://github.com/NVIDIA/nvidia-docker/issues/153 - we want devel, runtime is if we have deb/rpm/pip packages compiled for the project...
-FROM nvidia/cuda:7.5-cudnn5-devel
-
-#FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04  #causes cv2 import error
-#FROM nvidia/cuda:7.5-cudnn5-devel  #causes cv2 import error
-#possibly should be nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04 or  nvidia/cuda:7.5-cudnn5-runtime. but devel is what;s used in the theano file
-
-#otherwise -
-#FROM ubuntu:14.04
+FROM tg:base/all_machine_learning
 
 # To prevent `debconf: unable to initialize frontend: Dialog` error
 ENV DEBIAN_FRONTEND=noninteractive
@@ -107,13 +61,13 @@ RUN python setup.py install --yes USE_AVX_INSTRUCTIONS
 #OpenCV
 WORKDIR /
 RUN wget https://github.com/Itseez/opencv/archive/${OPENCV_VERSION}.zip -O opencv3.zip
-RUN unzip -q opencv3.zip 
-RUN mv /opencv-${OPENCV_VERSION} /opencv 
+RUN unzip -q opencv3.zip
+RUN mv /opencv-${OPENCV_VERSION} /opencv
 RUN	rm opencv3.zip
 
-#RUN wget https://github.com/Itseez/opencv_contrib/archive/${OPENCV_VERSION}.zip -O opencv_contrib3.zip 
-#RUN unzip -q opencv_contrib3.zip 
-#RUN mv /opencv_contrib-${OPENCV_VERSION} /opencv_contrib 
+#RUN wget https://github.com/Itseez/opencv_contrib/archive/${OPENCV_VERSION}.zip -O opencv_contrib3.zip
+#RUN unzip -q opencv_contrib3.zip
+#RUN mv /opencv_contrib-${OPENCV_VERSION} /opencv_contrib
 #RUN rm opencv_contrib3.zip
 
 RUN mkdir /opencv/build
@@ -152,7 +106,7 @@ RUN pip install -r requirements.txt
 # Get the maxmind geoip db. TODO: have this auto-update
 WORKDIR /usr/local/lib/python2.7/dist-packages/maxminddb
 RUN wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz
-RUN gzip -d GeoLite2-Country.mmdb.gz 
+RUN gzip -d GeoLite2-Country.mmdb.gz
 
 WORKDIR /
 
@@ -177,3 +131,4 @@ RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-package
 #things that didnt come up in requirements.txt for whatever reason
 RUN apt-get update
 CMD ["bash"]
+
