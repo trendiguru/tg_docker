@@ -71,6 +71,7 @@ WORKDIR /
 RUN git clone https://github.com/opencv/opencv.git
 #fix thrust issue between cuda8 and opencv
 WORKDIR /usr/local/cuda/include
+RUN echo 'hi'
 RUN mv thrust/ thrust_old
 RUN git clone https://github.com/thrust/thrust.git
 RUN mv thrust/ thrust_git
@@ -82,6 +83,7 @@ RUN ls thrust*
 WORKDIR /usr/local/cuda/include/thrust_git
 RUN ls thrust*
 WORKDIR /usr/local/cuda/include/
+RUN mkdir -p thrust
 RUN cp -r thrust_git/thrust thrust
 RUN ls thrust*
 
