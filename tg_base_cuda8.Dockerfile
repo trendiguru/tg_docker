@@ -3,7 +3,8 @@ FROM nvidia/cuda:8.0-cudnn5-devel
 ENV DEBIAN_FRONTEND=noninteractive
 
 ENV PYTHON_VERSION 2.7
-ENV OPENCV_VERSION 3.1.0
+#ENV OPENCV_VERSION 3.1.0
+ENV OPENCV_VERSION 2.4.13
 ENV NUM_CORES 32
 
 RUN NUM_CORES=$(nproc)
@@ -69,23 +70,23 @@ WORKDIR /
 #https://github.com/opencv/opencv.git
 RUN git clone https://github.com/opencv/opencv.git
 #fix thrust issue between cuda8 and opencv
-WORKDIR /usr/local/cuda/include
-RUN mv thrust/ thrust_old
-RUN git clone https://github.com/thrust/thrust.git
-RUN mv thrust/ thrust_git
-RUN WORKDIR /usr/local/cuda/include/thrust_git
-RUN pwd
-RUN ls -l
-RUN rm -Rf thrust
-RUN rm -Rf thrust/*
-RUN ls
-RUN WORKDIR /usr/local/cuda/include/thrust_git
-RUN ls
-RUN ls thrust
-RUN WORKDIR /usr/local/cuda/include/
-RUN cp -r thrust_git/thrust thrust
-RUN ls
-RUN ls thrust
+#WORKDIR /usr/local/cuda/include
+#RUN mv thrust/ thrust_old
+#RUN git clone https://github.com/thrust/thrust.git
+#RUN mv thrust/ thrust_git
+#RUN WORKDIR /usr/local/cuda/include/thrust_git
+#RUN pwd
+#RUN ls -l
+#RUN rm -Rf thrust
+#RUN rm -Rf thrust/*
+#UN ls
+#RUN WORKDIR /usr/local/cuda/include/thrust_git
+#RUN ls
+#RUN ls thrust
+#RUN WORKDIR /usr/local/cuda/include/
+#RUN cp -r thrust_git/thrust thrust
+#RUN ls
+#RUN ls thrust
 
 
 
