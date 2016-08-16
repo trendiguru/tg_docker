@@ -78,14 +78,12 @@ RUN pwd
 RUN ls
 RUN rm -Rf thrust
 RUN rm -Rf thrust/*
-RUN ls
+RUN ls thrust*
 WORKDIR /usr/local/cuda/include/thrust_git
-RUN ls
-RUN ls thrust
+RUN ls thrust*
 WORKDIR /usr/local/cuda/include/
 RUN cp -r thrust_git/thrust thrust
-RUN ls
-RUN ls thrust
+RUN ls thrust*
 
 
 
