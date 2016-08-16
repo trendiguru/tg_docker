@@ -73,6 +73,7 @@ WORKDIR /usr/local/cuda/include
 RUN mv thrust/ thrust_old
 RUN git clone https://github.com/thrust/thrust.git
 RUN mv thrust/ thrust_git
+RUN WORKDIR /usr/local/cuda/include/thrust_git
 RUN pwd
 RUN ls -l
 RUN rm -Rf thrust
