@@ -1,49 +1,5 @@
-###install google cloud sdk to be able to push/pull
-#export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
-#echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
-#apt-get install curl
-#curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-#sudo apt-get update && sudo apt-get install google-cloud-sdk
-#gcloud init
 
-### install nvidia-docker
-#wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.0-rc.3/nvidia-docker_1.0.0.rc.3-1_amd64.deb
-#sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
-## Test nvidia-smi
-#nvidia-docker run --rm nvidia/cuda nvidia-smi
-
-###on receiving machine:
-###install python pip (for pyopenssl)
-#apt-get install python-pip
-#pip install pyopenssl
-
-###build this image using tg:base tag  (so that all the other dockerfiles FROM line works
-#nvidia-docker build -t tg/base:1 -f tg_base.Dockerfile .
-#nvidia-docker build -t tg/caffe:1 -f cuda-tg-caffe.Dockerfile .
-
-###push by installing gcloud sdk then along lines of:
-#docker tag tg:base eu.gcr.io/test-paper-doll/tg/base:1
-#gcloud docker push eu.gcr.io/test-paper-doll/tg/base:1
-
-###pull using
-#docker run --rm -ti --volumes-from gcloud-config google/cloud-sdk gcloud auth print-access-token
-#docker pull eu.gcr.io/test-paper-doll/tg/base:1
-
-###run using something along the lines of:
-#nvidia-docker run  -v /home/jeremy/caffenets:/home/jeremy/caffenets -v  /home/jeremy/image_dbs:/home/jeremy/image_dbs -it --name jr2 tg/caffe:1 /bin/bash
-# where -v links directories bet. container and host #
-
-
-#if this is happening on a gpu machine -
-#FROM nvidia/cuda:7.5-cudnn5-runtime
-#see https://github.com/NVIDIA/nvidia-docker/issues/153 - we want devel, runtime is if we have deb/rpm/pip packages compiled for the project...
 FROM nvidia/cuda:7.5-cudnn5-devel
-
-#FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04  #causes cv2 import error
-#FROM nvidia/cuda:7.5-cudnn5-devel  #causes cv2 import error
-#possibly should be nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04 or  nvidia/cuda:7.5-cudnn5-runtime. but devel is what;s used in the theano file
-
-#otherwise -
 #FROM ubuntu:14.04
 
 # To prevent `debconf: unable to initialize frontend: Dialog` error
@@ -56,11 +12,11 @@ ENV NUM_CORES 32
 RUN NUM_CORES=$(nproc)
 
 ########
-#if you run into trouble with i386 requirements do this first: (the libc6 was something i happened to need)
-#RUN dpkg --add-architecture i386
-#RUN apt-get update
-#RUN apt-get install libc6-dbg
-#RUN apt-get install libc6-dbg:i386
+# if you run into trouble with i386 requirements do this first: (the libc6 was something i happened to need)
+# RUN dpkg --add-architecture i386
+# RUN apt-get update
+# RUN apt-get install libc6-dbg
+# RUN apt-get install libc6-dbg:i386
 
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
@@ -134,15 +90,12 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	-D BUILD_NEW_PYTHON_SUPPORT=ON \
 	-D WITH_QT=OFF ..
 
-#cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=$(python -c "import sys; print(sys.prefix)") -D PYTHON_EXECUTABLE=$(which python) -D BUILD_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_TESTS=OFF -D BUILD_opencv_java=OFF -D WITH_IPP=OFF -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_QT=OFF ..
-
-#RUN make -j$NUM_CORES  #hit error:  The command '/bin/sh -c make -j$NUM_CORES' returned a non-zero code: 2
-RUN make -j24
+RUN make -j$NUM_CORES
 RUN make install && make clean
 RUN ldconfig
-#for some reason the cv2.so isnt put anywhere useful.
-RUN ln -s /opencv/build/lib/cv2.so /usr/lib/python2.7/dist-packages/
 
+# Make sure cv2 is importable
+RUN ln -s /opencv/build/lib/cv2.so /usr/lib/python2.7/dist-packages/
 
 WORKDIR /
 
@@ -170,10 +123,8 @@ RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 RUN chmod 400 ~/.ssh/id_rsa
-#hitting host key verification failed in following line
+
 RUN git clone git@bitbucket.org:trendiGuru/rq-tg.git && pip install -e rq-tg
 RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-packages/trendi
 
-#things that didnt come up in requirements.txt for whatever reason
-RUN apt-get update
 CMD ["bash"]
