@@ -147,9 +147,13 @@ RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
 COPY score.py /opt/caffe/python
 COPY jrlayers.py /opt/caffe/python
 COPY surgery.py /opt/caffe/python
-COPY surgery.py /root
+
+COPY images_and_labels.txty /root
 COPY image.jpg /root
-COPY files.txt /root
+COPY deploy.prototxt /root
+COPY solver.prototxt /root
+COPY train.prototxt /root
+COPY val.prototxt /root
 
 ADD
 CMD ["bash"]
