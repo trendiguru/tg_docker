@@ -70,23 +70,23 @@ WORKDIR /
 #https://github.com/opencv/opencv.git
 RUN git clone https://github.com/opencv/opencv.git
 #fix thrust issue between cuda8 and opencv
-#WORKDIR /usr/local/cuda/include
-#RUN mv thrust/ thrust_old
-#RUN git clone https://github.com/thrust/thrust.git
-#RUN mv thrust/ thrust_git
-#RUN WORKDIR /usr/local/cuda/include/thrust_git
-#RUN pwd
-#RUN ls -l
-#RUN rm -Rf thrust
-#RUN rm -Rf thrust/*
-#UN ls
-#RUN WORKDIR /usr/local/cuda/include/thrust_git
-#RUN ls
-#RUN ls thrust
-#RUN WORKDIR /usr/local/cuda/include/
-#RUN cp -r thrust_git/thrust thrust
-#RUN ls
-#RUN ls thrust
+WORKDIR /usr/local/cuda/include
+RUN mv thrust/ thrust_old
+RUN git clone https://github.com/thrust/thrust.git
+RUN mv thrust/ thrust_git
+WORKDIR /usr/local/cuda/include/thrust_git
+RUN pwd
+RUN ls -l
+RUN rm -Rf thrust
+RUN rm -Rf thrust/*
+RUN ls
+WORKDIR /usr/local/cuda/include/thrust_git
+RUN ls
+RUN ls thrust
+WORKDIR /usr/local/cuda/include/
+RUN cp -r thrust_git/thrust thrust
+RUN ls
+RUN ls thrust
 
 
 
