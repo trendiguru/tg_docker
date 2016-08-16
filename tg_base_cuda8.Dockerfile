@@ -83,7 +83,7 @@ RUN rm -Rf thrust/*
 #RUN cd ..
 #RUN rmdir thrust
 RUN ls
-RUN cp thrust_git/thrust thrust
+RUN cp -r thrust_git/thrust thrust
 #RUN cd thrust_git
 #RUN mv thrust ..
 RUN ls
