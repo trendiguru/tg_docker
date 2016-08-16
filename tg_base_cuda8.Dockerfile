@@ -76,6 +76,9 @@ RUN git clone https://github.com/thrust/thrust.git
 WORKDIR /usr/local/cuda/include
 RUN echo 'hi'
 RUN mv thrust/ thrust_old
+RUN rm -rf thrust/*
+RUN rm -rf thrust
+RUN rmdir thrust
 RUN ls thrust*
 RUN cp -r /root/thrust/thrust thrust
 RUN ls thrust*
