@@ -155,5 +155,4 @@ COPY solver.prototxt /root
 COPY train.prototxt /root
 COPY val.prototxt /root
 
-ADD
 CMD ["bash"]
