@@ -99,8 +99,9 @@ RUN apt-get update
 ###############
 # Caffe
 ###############
-RUN apt-get update && apt-get install -y --no-install-recommends \
 
+#some duplicates from above removed
+RUN apt-get update && apt-get install -y --no-install-recommends \
         libgflags-dev \
         libgoogle-glog-dev \
         libleveldb-dev \
@@ -117,7 +118,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #        python-dev \
 
 ENV CLONE_TAG=master
-
 
 WORKDIR /opt
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git
