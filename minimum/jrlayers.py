@@ -633,8 +633,8 @@ class JrMultilabel(caffe.Layer):
  #              do_mirror_ud=self.augment_do_mirror_ud,
  #              crop_size=self.augment_crop_size,
  #              show_visual_output=self.augment_show_visual_output)
-            out_,unused = augment_images.generate_image_onthefly(in_,in_)
-
+#            out_,unused = augment_images.generate_image_onthefly(in_,in_)
+            out_ = cv2.flip(in_,0)
             print('returned from augment_images')
 
             #im = Image.open(filename)
