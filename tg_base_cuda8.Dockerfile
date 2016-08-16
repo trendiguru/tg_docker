@@ -78,7 +78,7 @@ RUN echo 'hi'
 RUN mv thrust/ thrust_old
 RUN rm -rf thrust/*
 RUN rm -rf thrust
-RUN rmdir thrust
+#RUN rmdir thrust  #YAY its gone
 RUN ls thrust*
 RUN cp -r /root/thrust/thrust thrust
 RUN ls thrust*
