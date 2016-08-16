@@ -148,7 +148,7 @@ COPY score.py /opt/caffe/python
 COPY jrlayers.py /opt/caffe/python
 COPY surgery.py /opt/caffe/python
 
-COPY images_and_labels.txty /root
+COPY images_and_labels.txt /root
 COPY image.jpg /root
 COPY deploy.prototxt /root
 COPY solver.prototxt /root
