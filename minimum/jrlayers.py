@@ -10,7 +10,6 @@ from PIL import Image
 import cv2
 import random
 
-from trendi.utils import augment_images
 
 class JrPixlevel(caffe.Layer):
     """
@@ -166,7 +165,6 @@ class JrPixlevel(caffe.Layer):
     def reshape(self, bottom, top):
         print('reshaping')
         # reshape tops to fit (leading 1 is for batch dimension)
-
 #        self.data,self.label = self.load_image_and_mask()
         if self.batch_size == 1:
             self.data, self.label = self.load_image_and_mask()
@@ -188,8 +186,6 @@ class JrPixlevel(caffe.Layer):
             top[0].reshape(*self.data.shape)
             top[1].reshape(*self.label.shape)
             logging.debug('batchsize {} datasize {} labelsize {}'.format(self.batch_size,self.data.shape,self.label.shape))
-
-
 
 
     def next_idx(self):
@@ -332,7 +328,9 @@ class JrPixlevel(caffe.Layer):
         print('uniques of label:'+str(np.unique(label_in_))+' shape:'+str(label_in_.shape))
 #        print('after extradim shape:'+str(label.shape))
 
-        out1,out2 = augment_images.generate_image_onthefly(in_, mask_filename_or_nparray=label_in_)
+        #out1,out2 = augment_images.generate_image_onthefly(in_, mask_filename_or_nparray=label_in_)
+        out1 = cv2.flip(in_,1)
+        out2 = cv2.flip(label_in,1)
 
         out1 = out1[:,:,::-1]   #RGB -> BGR
         out1 -= self.mean  #assumes means are BGR order, not RGB
