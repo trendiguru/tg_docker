@@ -82,9 +82,11 @@ RUN rm -Rf thrust/*
 RUN ls thrust*
 WORKDIR /usr/local/cuda/include/thrust_git
 RUN ls thrust*
+RUN mkdir -p ../thrust
+RUN cp -r thrust ../thrust
 WORKDIR /usr/local/cuda/include/
-RUN mkdir -p thrust
-RUN cp -r thrust_git/thrust thrust
+#RUN mkdir -p thrust
+#RUN cp -r thrust_git/thrust thrust
 RUN ls thrust*
 
 
