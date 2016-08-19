@@ -28,6 +28,7 @@
 ###pull using
 #docker run --rm -ti --volumes-from gcloud-config google/cloud-sdk gcloud auth print-access-token
 #docker pull eu.gcr.io/test-paper-doll/tg/base:1
+#docker pull eu.gcr.io/test-paper-doll/tg/base:all_machine_learning
 
 ###run using something along the lines of:
 #nvidia-docker run  -v /home/jeremy/caffenets:/home/jeremy/caffenets -v  /home/jeremy/image_dbs:/home/jeremy/image_dbs -it --name jr2 tg/caffe:1 /bin/bash
@@ -176,4 +177,11 @@ RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-package
 
 #things that didnt come up in requirements.txt for whatever reason
 RUN apt-get update
+
+#making life easier for jr
+#add a crontab line to run auto progress plots
+echo "0,20,40 * * * * /usr/lib/python2.7/trendi/classifier_stuff/auto_progress_plots.sh" /var/spool/cron/crontabs/root
+
+
+
 CMD ["bash"]
