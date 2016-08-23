@@ -181,7 +181,10 @@ RUN apt-get update
 #making life easier for jr
 #add a crontab line to run auto progress plots
 echo "0,20,40 * * * * /usr/lib/python2.7/trendi/classifier_stuff/auto_progress_plots.sh" /var/spool/cron/crontabs/root
-
+#ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrlayers.py /root/caffe/python
+#ln -s /usr/lib/python2.7/dist-packacges/trendi/classifier_stuff/caffe_nns/surgery.py /root/caffe/python
+#ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/score.py /root/caffe/python
+#git -C /usr/lib/python2.7/dist-packages/trendi pull
 
 
 CMD ["bash"]
