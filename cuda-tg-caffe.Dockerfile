@@ -29,7 +29,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #apt-get update && apt-get install -y --no-install-recommends  build-essential cmake  git  wget  libatlas-base-dev libboost-all-dev libgflags-dev libgoogle-glog-dev libhdf5-serial-dev libleveldb-dev liblmdb-dev libopencv-dev libprotobuf-dev libsnappy-dev  protobuf-compiler python-dev python-numpy python-pip  python-scipy
 
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
-# TODO: make sure python layer is enabled , myabe with cmake argument like below or by changing Makefile.config #
 ENV CLONE_TAG=master
 
 #avoid this "Cannot use GPU in CPU-only Caffe: check mode."
@@ -60,5 +59,5 @@ ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
 ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
-
+RUN alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'
 WORKDIR /workspace
