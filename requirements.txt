@@ -25,3 +25,4 @@ oauth2client
 ipython
 joblib
 setproctitle
+lmdb
