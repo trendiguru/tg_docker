@@ -26,3 +26,4 @@ ipython
 joblib
 setproctitle
 lmdb
+pydot
