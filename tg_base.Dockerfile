@@ -1,4 +1,4 @@
-###install google cloud sdk to be able to push/pull
+####install google cloud sdk to be able to push/pull
 #export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
 #echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
 #apt-get install curl
