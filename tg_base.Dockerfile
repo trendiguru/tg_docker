@@ -20,6 +20,7 @@
 ###build this image using tg:base tag  (so that all the other dockerfiles FROM line works
 #nvidia-docker build -t tg/base:1 -f tg_base.Dockerfile .
 #nvidia-docker build -t tg/caffe:1 -f cuda-tg-caffe.Dockerfile .
+#nvidia-docker build -t tg/all_machine_learning:1 -f tg_all_machine_learning.Dockerfile .
 
 ###push by installing gcloud sdk then along lines of:
 #docker tag tg:base eu.gcr.io/test-paper-doll/tg/base:1

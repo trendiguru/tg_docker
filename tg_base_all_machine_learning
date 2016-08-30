@@ -1,4 +1,4 @@
-FROM tg/all_machine_learning
+FROM tg/all_machine_learning:1
 
 # To prevent `debconf: unable to initialize frontend: Dialog` error
 ENV DEBIAN_FRONTEND=noninteractive
@@ -130,5 +130,14 @@ RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-package
 
 #things that didnt come up in requirements.txt for whatever reason
 RUN apt-get update
+
+#jeremy convenience
+RUN echo "0,20,40 * * * * /usr/lib/python2.7/trendi/classifier_stuff/auto_progress_plots.sh" >> /var/spool/cron/crontabs/root
+RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrlayers.py /root/caffe/python
+RUN ln -s /usr/lib/python2.7/dist-packacges/trendi/classifier_stuff/caffe_nns/surgery.py /root/caffe/python
+RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/score.py /root/caffe/python
+RUN alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'
+
+
 CMD ["bash"]
 
