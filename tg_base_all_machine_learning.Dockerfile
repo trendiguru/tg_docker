@@ -141,7 +141,7 @@ RUN echo "0,20,40 * * * * /usr/lib/python2.7/trendi/classifier_stuff/auto_progre
 RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrlayers.py /root/caffe/python
 RUN ln -s /usr/lib/python2.7/dist-packacges/trendi/classifier_stuff/caffe_nns/surgery.py /root/caffe/python
 RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/score.py /root/caffe/python
-RUN alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'
+RUN echo "alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'" >> /root/.bashrc
 #note alias didnt work , gotta sed/awk it into .bashrc
 
 CMD ["bash"]

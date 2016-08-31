@@ -34,7 +34,8 @@
 ###run using something along the lines of:
 #nvidia-docker run  -v /home/jeremy/caffenets:/home/jeremy/caffenets -v  /home/jeremy/image_dbs:/home/jeremy/image_dbs -it --name jr2 tg/caffe:1 /bin/bash
 # where -v links directories bet. container and host #
-
+# get baremetal hostname info into docker env variable with -e
+#nvidia-docker run -e HOST_HOSTNAME=`hostname` -it -v /home/jeremy:/home/jeremy tg/base_all_machine_learning:1 bash
 
 #if this is happening on a gpu machine -
 #FROM nvidia/cuda:7.5-cudnn5-runtime
