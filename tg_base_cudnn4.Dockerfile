@@ -1,44 +1,8 @@
-###install google cloud sdk to be able to push/pull
-#export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
-#echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
-#apt-get install curl
-#curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-#sudo apt-get update && sudo apt-get install google-cloud-sdk
-#gcloud init
-
-### install nvidia-docker
-#wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.0-rc.3/nvidia-docker_1.0.0.rc.3-1_amd64.deb
-#sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
-## Test nvidia-smi
-#nvidia-docker run --rm nvidia/cuda nvidia-smi
-
-###on receiving machine:
-###install python pip (for pyopenssl)
-#apt-get install python-pip
-#pip install pyopenssl
-
-###build this image using tg:base tag  (so that all the other dockerfiles FROM line works
-#nvidia-docker build -t tg:base -f tg_base.Dockerfile .
-
-###push by installing gcloud sdk then along lines of:
-#docker tag tg:base eu.gcr.io/test-paper-doll/tg/base:1
-#gcloud docker push eu.gcr.io/test-paper-doll/tg/base:1
-
-###pull using
-#docker run --rm -ti --volumes-from gcloud-config google/cloud-sdk gcloud auth print-access-token
-#docker pull eu.gcr.io/test-paper-doll/tg/base:1
-
-
-#if this is happening on a gpu machine -
-#FROM nvidia/cuda:7.5-cudnn5-runtime
 #USE CUDNN4 for tensoflow compatibility
 FROM nvidia/cuda:7.5-cudnn4-runtime
 #FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04  #causes cv2 import error
 #FROM nvidia/cuda:7.5-cudnn5-devel  #causes cv2 import error
 #possibly should be nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04 or  nvidia/cuda:7.5-cudnn5-runtime. but devel is what;s used in the theano file
-
-#otherwise -
-#FROM ubuntu:14.04
 
 # To prevent `debconf: unable to initialize frontend: Dialog` error
 ENV DEBIAN_FRONTEND=noninteractive
@@ -75,6 +39,8 @@ RUN apt-get update && \
 		libjpeg-dev \
 		libtiff-dev \
 		libhdf5-dev \
+		nano \
+		screen \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN wget https://bootstrap.pypa.io/get-pip.py
