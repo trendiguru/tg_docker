@@ -2,7 +2,8 @@
 #nvidia-docker build -t tg/base:cudnn4 -f tg_base.Dockerfile .
 
 #USE CUDNN4 for tensoflow compatibility
-FROM nvidia/cuda:7.5-cudnn4-runtime
+FROM nvidia/cuda:7.5-cudnn4-devel
+#FROM nvidia/cuda:7.5-cudnn4-runtime  #nvcc missing here apparently
 #FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04  #causes cv2 import error
 #FROM nvidia/cuda:7.5-cudnn5-devel  #causes cv2 import error
 #possibly should be nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04 or  nvidia/cuda:7.5-cudnn5-runtime. but devel is what;s used in the theano file
