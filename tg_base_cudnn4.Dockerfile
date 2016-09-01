@@ -91,6 +91,7 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 RUN make -j$NUM_CORES
 RUN make install && make clean
 RUN ldconfig
+RUN ln -s /opencv/build/lib/cv2.so /usr/lib/python2.7/dist-packages/
 
 WORKDIR /
 
