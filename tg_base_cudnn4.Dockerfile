@@ -1,3 +1,6 @@
+###build this image using tg:base:cudnn4 tag  (so that all the other dockerfiles FROM line works
+#nvidia-docker build -t tg/base:cudnn4 -f tg_base.Dockerfile .
+
 #USE CUDNN4 for tensoflow compatibility
 FROM nvidia/cuda:7.5-cudnn4-runtime
 #FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04  #causes cv2 import error
