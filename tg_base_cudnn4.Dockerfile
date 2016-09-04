@@ -1,5 +1,5 @@
 ###build this image using tg:base:cudnn4 tag  (so that all the other dockerfiles FROM line works
-#nvidia-docker build -t tg/base:cudnn4 -f tg_base.Dockerfile .
+#nvidia-docker build -t tg/base:cudnn4 -f tg_base_cudnn4.Dockerfile .
 
 #USE CUDNN4 for tensoflow compatibility
 FROM nvidia/cuda:7.5-cudnn4-devel
@@ -91,7 +91,6 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 RUN make -j$NUM_CORES
 RUN make install && make clean
 RUN ldconfig
-RUN ln -s /opencv/build/lib/cv2.so /usr/lib/python2.7/dist-packages/
 
 WORKDIR /
 
@@ -125,5 +124,13 @@ RUN git clone git@github.com:trendiguru/core.git /usr/lib/python2.7/dist-package
 RUN pip install ipython
 RUN apt-get update
 RUN apt-get install -y nano
+
+#for MNC
+#get ready for caffe
+#apt-get update && apt-get install -y --no-install-recommends  build-essential cmake  git  wget  libatlas-base-dev libboost-all-dev libgflags-dev libgoogle-glog-dev libhdf5-serial-dev libleveldb-dev liblmdb-dev libopencv-dev libprotobuf-dev libsnappy-dev  protobuf-compiler python-dev python-numpy python-pip  python-scipy
+#numpy, scipy, cython, python-opencv, easydict, yaml
+
+#git clone --recursive https://github.com/daijifeng001/MNC.git
+#sudo apt-get install python-skimage
 
 CMD ["bash"]

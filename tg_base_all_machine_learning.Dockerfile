@@ -26,43 +26,6 @@ RUN apt-get update && \
 		ca-certificates \
 		pkg-config \
 		build-essential \
-		libfreetype6-dev \
-		libpng12-dev \
-		wget \
-		python$PYTHON_VERSION-dev \
-		unzip \
-		cmake \
-		git \
-		ssh \
-		libatlas-base-dev \
-		libboost-all-dev \
-		gfortran \
-		libtbb2 \
-		libtbb-dev \
-		libjasper-dev \
-		libgtk2.0-dev \
-		libavcodec-dev \
-		libavformat-dev \
-		libswscale-dev \
-		libjpeg-dev \
-		libtiff-dev \
-		libhdf5-dev \
-		nano \
-		screen \
-	&& rm -rf /var/lib/apt/lists/*
-
-RUN wget https://bootstrap.pypa.io/get-pip.py
-
-RUN python get-pip.py
-RUN pip install numpy matplotlib
-
-
-#dlib
-WORKDIR /
-RUN git clone https://github.com/davisking/dlib.git
-WORKDIR /dlib
-RUN python setup.py install --yes USE_AVX_INSTRUCTIONS
-
 #OpenCV
 WORKDIR /
 RUN wget https://github.com/Itseez/opencv/archive/${OPENCV_VERSION}.zip -O opencv3.zip
@@ -95,7 +58,6 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 
 #cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=$(python -c "import sys; print(sys.prefix)") -D PYTHON_EXECUTABLE=$(which python) -D BUILD_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_TESTS=OFF -D BUILD_opencv_java=OFF -D WITH_IPP=OFF -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_QT=OFF ..
 
-#RUN make -j$NUM_CORES  #hit error:  The command '/bin/sh -c make -j$NUM_CORES' returned a non-zero code: 2
 RUN make -j24
 RUN make install && make clean
 RUN ldconfig
