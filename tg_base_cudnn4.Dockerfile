@@ -134,3 +134,14 @@ RUN apt-get install -y nano
 #sudo apt-get install python-skimage
 
 CMD ["bash"]
+
+#MNC cheatsheet
+#sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+#install pip
+#git clone --recursive https://github.com/daijifeng001/MNC.git
+#numpy, scipy, cython, python-opencv, easydict, yaml.
+#apt-get install git
+#apt-get install unzip
+#before caffe:
+#sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libboost-all-dev libhdf5-serial-dev libgflags-dev libgoogle-glog-dev liblmdb-dev protobuf-compiler libatlas-base-dev
+#sudo apt-get install python-dev python-pip gfortran

@@ -36,6 +36,7 @@
 # where -v links directories bet. container and host #
 # get baremetal hostname info into docker env variable with -e
 #nvidia-docker run -e HOST_HOSTNAME=`hostname` -it -v /home/jeremy:/home/jeremy tg/base_all_machine_learning:1 bash
+#nvidia-docker run -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/home/developer/.Xauthority --name sharp3 -e HOST_HOSTNAME=`hostname` -it -v /home/jeremy:/home/jeremy  eu.gcr.io/test-paper-doll/tg/base:all_machine_learning bash
 
 #if this is happening on a gpu machine -
 #FROM nvidia/cuda:7.5-cudnn5-runtime
