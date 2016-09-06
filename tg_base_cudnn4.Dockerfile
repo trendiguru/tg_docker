@@ -136,6 +136,7 @@ RUN apt-get install -y nano
 CMD ["bash"]
 
 #MNC cheatsheet
+# this driver works: NVIDIA-Linux-x86_64-361.45.11.run
 #sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
 #install pip
 #git clone --recursive https://github.com/daijifeng001/MNC.git
