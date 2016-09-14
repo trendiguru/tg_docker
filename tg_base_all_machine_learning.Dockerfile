@@ -26,6 +26,30 @@ RUN apt-get update && \
 		ca-certificates \
 		pkg-config \
 		build-essential \
+		libfreetype6-dev \
+		libpng12-dev \
+		wget \
+		python$PYTHON_VERSION-dev \
+		unzip \
+		cmake \
+		git \
+		ssh \
+		libatlas-base-dev \
+		libboost-all-dev \
+		gfortran \
+		libtbb2 \
+		libtbb-dev \
+		libjasper-dev \
+		libgtk2.0-dev \
+		libavcodec-dev \
+		libavformat-dev \
+		libswscale-dev \
+		libjpeg-dev \
+		libtiff-dev \
+		libhdf5-dev \
+		nano \
+		screen
+
 #OpenCV
 WORKDIR /
 RUN wget https://github.com/Itseez/opencv/archive/${OPENCV_VERSION}.zip -O opencv3.zip
