@@ -1,6 +1,8 @@
 gunicorn
 falcon
 falcon-cors
+passlib
+pyjwt
 maxminddb
 jaweson
 msgpack-python
