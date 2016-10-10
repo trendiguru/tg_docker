@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-scipy && \
     rm -rf /var/lib/apt/lists/*
 
+#all of the above in a single cli line
 #apt-get update && apt-get install -y --no-install-recommends  build-essential cmake  git  wget  libatlas-base-dev libboost-all-dev libgflags-dev libgoogle-glog-dev libhdf5-serial-dev libleveldb-dev liblmdb-dev libopencv-dev libprotobuf-dev libsnappy-dev  protobuf-compiler python-dev python-numpy python-pip  python-scipy
 
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
@@ -44,9 +45,7 @@ WORKDIR $CAFFE_ROOT
 RUN for req in $(cat python/requirements.txt) pydot; do pip install $req; done
 
 RUN mkdir build
-#RUN cd build
 WORKDIR build
-RUN ls
 
 RUN ldconfig
 

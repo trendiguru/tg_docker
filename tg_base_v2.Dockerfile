@@ -185,8 +185,10 @@ RUN apt-get update
 #add a crontab line to run auto progress plots
 RUN echo "0,20,40 * * * * /usr/lib/python2.7/trendi/classifier_stuff/auto_progress_plots.sh" >> /var/spool/cron/crontabs/root
 RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrlayers.py /root/caffe/python
-RUN ln -s /usr/lib/python2.7/dist-packacges/trendi/classifier_stuff/caffe_nns/surgery.py /root/caffe/python
+RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrlayers2.py /root/caffe/python
+RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/surgery.py /root/caffe/python
 RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/score.py /root/caffe/python
+RUN cp /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/solve.py /root/caffe/python
 RUN alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'
 
 #mongo/redis port forwarding. the ssh may need permissions on extremeli
