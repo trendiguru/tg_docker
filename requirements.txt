@@ -1,6 +1,8 @@
 gunicorn
 falcon
 falcon-cors
+passlib
+pyjwt
 maxminddb
 jaweson
 msgpack-python
@@ -28,4 +30,4 @@ setproctitle
 lmdb
 pydot
 dlib
-nfc
+nfcpydot
