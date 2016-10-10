@@ -30,4 +30,4 @@ setproctitle
 lmdb
 pydot
 dlib
-nfcpydot
+nfc

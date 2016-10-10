@@ -130,5 +130,6 @@ RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/sco
 RUN echo "alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'" >> /root/.bashrc
 #note alias didnt work , gotta sed/awk it into .bashrc
 
+
 CMD ["bash"]
 

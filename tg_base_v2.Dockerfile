@@ -189,7 +189,7 @@ RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrl
 RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/surgery.py /root/caffe/python
 RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/score.py /root/caffe/python
 RUN cp /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/solve.py /root/caffe/python
-RUN alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'
+RUN echo "alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'" >> /root/.bashrc
 
 #mongo/redis port forwarding. the ssh may need permissions on extremeli
 RUN ssh -f -N -L 27017:mongodb1-instance-1:27017 -L 6379:redis1-redis-1-vm:6379 root@extremeli.trendi.guru
