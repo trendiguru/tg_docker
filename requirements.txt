@@ -30,4 +30,4 @@ setproctitle
 lmdb
 pydot
 dlib
-nfc
+#nfc   #No distributions at all found for nfc
