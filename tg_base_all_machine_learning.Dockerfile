@@ -129,7 +129,7 @@ RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrl
 #RUN ln -s /usr/lib/python2.7/dist-packacges/trendi/classifier_stuff/caffe_nns/surgery.py /root/caffe/python
 #RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/score.py /root/caffe/python
 RUN echo "alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'" >> /root/.bashrc
-RUN echo "alias cp='/usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns' >> /root/.bashrc
+RUN echo "alias tgnn='/usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns'" >> /root/.bashrc
 
 
 CMD ["bash"]
