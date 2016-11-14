@@ -96,6 +96,9 @@ RUN apt-get update && \
 		screen \
 	&& rm -rf /var/lib/apt/lists/*
 
+#above in one cli
+#apt-get install -y --no-install-recommends ca-certificates  pkg-config  build-essential  libfreetype6-dev  libpng12-dev  wget  python2.7  unzip  cmake  git  ssh  libatlas-base-dev  libboost-all-dev  gfortran  libtbb2  libtbb-dev  libjasper-dev  libgtk2.0-dev  libavcodec-dev  libavformat-dev  libswscale-dev  libjpeg-dev  libtiff-dev  libhdf5-dev  nano  screen
+
 RUN wget https://bootstrap.pypa.io/get-pip.py
 
 RUN python get-pip.py

@@ -192,6 +192,14 @@ RUN luarocks install nn && \
 	cd iTorch && \
 	luarocks make
 
+#setting up deepmask - requires torch, coco as per https://github.com/facebookresearch/deepmask
+#COCO API, image, tds, cjson, nnx, optim, inn, cutorch, cunn, cudnn
+
+#coco
+#git clone https://github.com/pdollar/coco.git
+#cd coco
+#luarocks make LuaAPI/rocks/coco-scm-1.rockspec
+
 
 # Set up notebook config
 #COPY jupyter_notebook_config.py /root/.jupyter/
