@@ -1,9 +1,9 @@
 #first build the other one (tg_all_ml_dockerfile)
-# nvidia-docker build -t tg/all_machine_learning:1 -f tg_all_machine_learning.Dockerfile .
+# nvidia-docker build -t tg/all_machine_learning_cudnn5:1 -f tg_all_machine_learning_cudnn5.Dockerfile .
 #then build this one
-# nvidia-docker build -t tg/base_all_machine_learning:1 -f tg_base_all_machine_learning.Dockerfile .
+# nvidia-docker build -t tg/base_all_machine_learning_cudnn5:1 -f tg_base_all_machine_learning_cudnn5.Dockerfile .
 
-FROM tg/all_machine_learning:1
+FROM tg/all_machine_learning_cudnn5:1
 
 # To prevent `debconf: unable to initialize frontend: Dialog` error
 ENV DEBIAN_FRONTEND=noninteractive
@@ -130,6 +130,7 @@ RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrl
 #RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/score.py /root/caffe/python
 RUN echo "alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'" >> /root/.bashrc
 RUN echo "alias tgnn='/usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns'" >> /root/.bashrc
+
 
 
 CMD ["bash"]

@@ -1,7 +1,7 @@
-#first build this one
-# nvidia-docker build -t tg/all_machine_learning:1 -f tg_all_machine_learning.Dockerfile .
-#then build the other one (tg_base_all_ml)
-# nvidia-docker build -t tg/base_all_machine_learning:1 -f tg_base_all_machine_learning.Dockerfile .
+#first build the other one (tg_all_ml_dockerfile)
+# nvidia-docker build -t tg/all_machine_learning_cudnn5:1 -f tg_all_machine_learning_cudnn5.Dockerfile .
+#then build this one
+# nvidia-docker build -t tg/base_all_machine_learning_cudnn5:1 -f tg_base_all_machine_learning_cudnn5.Dockerfile .
 #
 #original  at https://github.com/saiprashanths/dl-docker/edit/master/Dockerfile.gpu
 
@@ -200,4 +200,65 @@ RUN luarocks install nn && \
 EXPOSE 6006 8888
 
 WORKDIR "/root"
+
+###################
+#deepmask
+###################
+#setting up deepmask - requires torch, coco as per https://github.com/facebookresearch/deepmask
+#COCO API, image, tds, cjson, nnx, optim, inn, cutorch, cunn, cudnn
+
+#maybe not needed at first:
+#luarocks install inn
+#luarocks install torchnet
+#luarocks install fbpython
+#luarocks install class
+
+#coco
+WORKDIR /
+RUN git clone https://github.com/pdollar/coco.git
+WORKDIR coco
+RUN luarocks make LuaAPI/rocks/coco-scm-1.rockspec
+#WORKDIR pythonAPI
+#RUN ls
+#RUN pwd
+#RUN make
+
+#image
+#cd /root/torch   #possibly unecessary
+#not necessaryy:####git clone https://github.com/torch/image.git
+RUN luarocks install image
+
+#tds
+#######3#git clone https://github.com/torch/tds.git
+RUN luarocks install tds
+
+#cjson
+#torch-rocks install json
+#that doesnt work, try
+RUN luarocks install json
+
+#nnx
+RUN luarocks install nnx   #seemst o work
+
+#optim - no instructions...
+#git clone https://github.com/torch/optim
+RUN luarocks install optim
+
+#imagine-nn - no instructions
+#git clone https://github.com/szagoruyko/imagine-nn.git
+RUN luarocks install inn
+
+RUN DEEPMASK=/deepmask
+WORKDIR /
+RUN git clone git@github.com:facebookresearch/deepmask.git $DEEPMASK
+
+RUN mkdir -p $DEEPMASK/pretrained/deepmask
+WORKDIR $DEEPMASK/pretrained/deepmask
+RUN wget https://s3.amazonaws.com/deepmask/models/deepmask/model.t7
+RUN mkdir -p $DEEPMASK/pretrained/sharpmask
+WORKDIR $DEEPMASK/pretrained/sharpmask
+RUN wget https://s3.amazonaws.com/deepmask/models/sharpmask/model.t7
+
+
+
 CMD ["/bin/bash"]
