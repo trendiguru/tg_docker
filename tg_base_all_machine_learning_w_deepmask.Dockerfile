@@ -131,7 +131,9 @@ RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrl
 RUN echo "alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'" >> /root/.bashrc
 RUN echo "alias tgnn='/usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns'" >> /root/.bashrc
 
-
+###################
+#deepmask
+###################
 #setting up deepmask - requires torch, coco as per https://github.com/facebookresearch/deepmask
 #COCO API, image, tds, cjson, nnx, optim, inn, cutorch, cunn, cudnn
 
@@ -142,107 +144,47 @@ RUN echo "alias tgnn='/usr/lib/python2.7/dist-packages/trendi/classifier_stuff/c
 #luarocks install class
 
 #coco
-#git clone https://github.com/pdollar/coco.git
-#cd coco
-#luarocks make LuaAPI/rocks/coco-scm-1.rockspec
-#cd coco/PythonAPI
-#make
+WORKDIR /
+RUN git clone https://github.com/pdollar/coco.git
+WORKDIR coco
+RUN luarocks make LuaAPI/rocks/coco-scm-1.rockspec
+WORKDIR pythonAPI
+RUN make
 
 #image
 #cd /root/torch   #possibly unecessary
-#luarocks install image
 #not necessaryy:####git clone https://github.com/torch/image.git
+RUN luarocks install image
 
 #tds
 #######3#git clone https://github.com/torch/tds.git
-#luarocks install tds
+RUN luarocks install tds
 
-#luarocks install rocks
 #cjson
 #torch-rocks install json
 #that doesnt work, try
-#luarocks install json
-
+RUN luarocks install json
 
 #nnx
-#luarocks install nnx   #seemst o work
-#Install Torch7 (refer to its own documentation).
-#clone this project into dev directory of Torch7.
-#git clone https://github.com/clementfarabet/lua---nnx.git
-#Rebuild torch, it will include new projects too.
+RUN luarocks install nnx   #seemst o work
 
 #optim - no instructions...
-#luarocks install optim
-
 #git clone https://github.com/torch/optim
+RUN luarocks install optim
 
 #imagine-nn - no instructions
-#luarocks install inn
 #git clone https://github.com/szagoruyko/imagine-nn.git
+RUN luarocks install inn
 
 RUN DEEPMASK=/deepmask
 RUN git clone git@github.com:facebookresearch/deepmask.git $DEEPMASK
 
-mkdir -p $DEEPMASK/pretrained/deepmask; cd $DEEPMASK/pretrained/deepmask
-wget https://s3.amazonaws.com/deepmask/models/deepmask/model.t7
-mkdir -p $DEEPMASK/pretrained/sharpmask; cd $DEEPMASK/pretrained/sharpmask
-wget https://s3.amazonaws.com/deepmask/models/sharpmask/model.t7
-
-#setting up deepmask - requires torch, coco as per https://github.com/facebookresearch/deepmask
-#COCO API, image, tds, cjson, nnx, optim, inn, cutorch, cunn, cudnn
-
-#maybe not needed at first:
-#luarocks install inn
-#luarocks install torchnet
-#luarocks install fbpython
-#luarocks install class
-
-#coco
-#git clone https://github.com/pdollar/coco.git
-#cd coco
-#luarocks make LuaAPI/rocks/coco-scm-1.rockspec
-#cd coco/PythonAPI
-#make
-
-#image
-#cd /root/torch   #possibly unecessary
-#luarocks install image
-#not necessaryy:####git clone https://github.com/torch/image.git
-
-#tds
-#######3#git clone https://github.com/torch/tds.git
-#luarocks install tds
-
-#luarocks install rocks
-#cjson
-#torch-rocks install json
-#that doesnt work, try
-#luarocks install json
-
-
-#nnx
-#luarocks install nnx   #seemst o work
-#Install Torch7 (refer to its own documentation).
-#clone this project into dev directory of Torch7.
-#git clone https://github.com/clementfarabet/lua---nnx.git
-#Rebuild torch, it will include new projects too.
-
-#optim - no instructions...
-#luarocks install optim
-
-#git clone https://github.com/torch/optim
-
-#imagine-nn - no instructions
-#luarocks install inn
-#git clone https://github.com/szagoruyko/imagine-nn.git
-
-RUN DEEPMASK=/deepmask
-RUN git clone git@github.com:facebookresearch/deepmask.git $DEEPMASK
-
-mkdir -p $DEEPMASK/pretrained/deepmask; cd $DEEPMASK/pretrained/deepmask
-wget https://s3.amazonaws.com/deepmask/models/deepmask/model.t7
-mkdir -p $DEEPMASK/pretrained/sharpmask; cd $DEEPMASK/pretrained/sharpmask
-wget https://s3.amazonaws.com/deepmask/models/sharpmask/model.t7
+RUN mkdir -p $DEEPMASK/pretrained/deepmask
+WORKDIR $DEEPMASK/pretrained/deepmask
+RUN wget https://s3.amazonaws.com/deepmask/models/deepmask/model.t7
+RUN mkdir -p $DEEPMASK/pretrained/sharpmask
+WORKDIR $DEEPMASK/pretrained/sharpmask
+RUN wget https://s3.amazonaws.com/deepmask/models/sharpmask/model.t7
 
 
 
