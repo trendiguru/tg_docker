@@ -1,11 +1,11 @@
 #first build the other one (tg_all_ml_dockerfile)
-# nvidia-docker build -t tg/all_machine_learning_cudnn5:1 -f tg_all_machine_learning_cudnn5.Dockerfile .
+# nvidia-docker build -t tg/all_machine_learning_deepmask:1 -f tg_all_machine_learning_deepmask.Dockerfile .
 #then build this one
-# nvidia-docker build -t tg/base_all_machine_learning_cudnn5:1 -f tg_base_all_machine_learning_cudnn5.Dockerfile .
+# nvidia-docker build -t tg/base_all_machine_learning_deepmask:1 -f tg_base_all_machine_learning_deepmask.Dockerfile .
 #
 #original  at https://github.com/saiprashanths/dl-docker/edit/master/Dockerfile.gpu
 
-FROM nvidia/cuda:7.5-cudnn5-devel
+FROM nvidia/cuda:7.5-cudnn4-devel
 
 MAINTAINER Sai Soundararaj <saip@outlook.com>
 
