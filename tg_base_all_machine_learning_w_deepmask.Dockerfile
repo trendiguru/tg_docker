@@ -148,10 +148,10 @@ WORKDIR /
 RUN git clone https://github.com/pdollar/coco.git
 WORKDIR coco
 RUN luarocks make LuaAPI/rocks/coco-scm-1.rockspec
-WORKDIR pythonAPI
-RUN ls
-RUN pwd
-RUN make
+#WORKDIR pythonAPI
+#RUN ls
+#RUN pwd
+#RUN make
 
 #image
 #cd /root/torch   #possibly unecessary
