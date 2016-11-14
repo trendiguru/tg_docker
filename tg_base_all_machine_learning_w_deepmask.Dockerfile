@@ -1,7 +1,7 @@
 #first build the other one (tg_all_ml_dockerfile)
-# nvidia-docker build -t tg/all_machine_learning:1 -f tg_all_machine_learning_w_deepmask.Dockerfile .
+# nvidia-docker build -t tg/all_machine_learning:1 -f tg_all_machine_learning.Dockerfile .
 #then build this one
-# nvidia-docker build -t tg/base_all_machine_learning:1 -f tg_base_all_machine_learning.Dockerfile .
+# nvidia-docker build -t tg/base_all_machine_learning:1 -f tg_base_all_machine_learning_w_deepmask.Dockerfile .
 
 FROM tg/all_machine_learning:1
 
@@ -179,6 +179,7 @@ RUN luarocks install optim
 RUN luarocks install inn
 
 RUN DEEPMASK=/deepmask
+WORKDIR /
 RUN git clone git@github.com:facebookresearch/deepmask.git $DEEPMASK
 
 RUN mkdir -p $DEEPMASK/pretrained/deepmask
