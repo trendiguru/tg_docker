@@ -250,7 +250,7 @@ RUN luarocks install inn
 
 RUN DEEPMASK=/deepmask
 WORKDIR /
-RUN git clone git@github.com:facebookresearch/deepmask.git $DEEPMASK
+RUN git clone https://github.com/facebookresearch/deepmask.git $DEEPMASK
 
 RUN mkdir -p $DEEPMASK/pretrained/deepmask
 WORKDIR $DEEPMASK/pretrained/deepmask
