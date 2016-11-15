@@ -226,13 +226,16 @@ RUN luarocks install optim
 RUN luarocks install inn
 
 RUN DEEPMASK=/deepmask
+ENV DEEPMASK='/deepmask'
 RUN echo "export DEEPMASK=/deepmask" >> /root/.bashrc
 WORKDIR /
 RUN git clone https://github.com/facebookresearch/deepmask.git $DEEPMASK
 
+WORKDIR $DEEPMASK
 RUN mkdir -p $DEEPMASK/pretrained/deepmask
 WORKDIR $DEEPMASK/pretrained/deepmask
 RUN wget https://s3.amazonaws.com/deepmask/models/deepmask/model.t7
+WORKDIR $DEEPMASK
 RUN mkdir -p $DEEPMASK/pretrained/sharpmask
 WORKDIR $DEEPMASK/pretrained/sharpmask
 RUN wget https://s3.amazonaws.com/deepmask/models/sharpmask/model.t7
