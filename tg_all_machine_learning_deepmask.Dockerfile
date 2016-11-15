@@ -206,7 +206,6 @@ WORKDIR "/root"
 ###################
 #setting up deepmask - requires torch, coco as per https://github.com/facebookresearch/deepmask
 #COCO API, image, tds, cjson, nnx, optim, inn, cutorch, cunn, cudnn
-
 #maybe not needed at first:
 #luarocks install inn
 #luarocks install torchnet
@@ -218,37 +217,16 @@ WORKDIR /
 RUN git clone https://github.com/pdollar/coco.git
 WORKDIR coco
 RUN luarocks make LuaAPI/rocks/coco-scm-1.rockspec
-#WORKDIR pythonAPI
-#RUN ls
-#RUN pwd
-#RUN make
 
-#image
-#cd /root/torch   #possibly unecessary
-#not necessaryy:####git clone https://github.com/torch/image.git
 RUN luarocks install image
-
-#tds
-#######3#git clone https://github.com/torch/tds.git
 RUN luarocks install tds
-
-#cjson
-#torch-rocks install json
-#that doesnt work, try
 RUN luarocks install json
-
-#nnx
 RUN luarocks install nnx   #seemst o work
-
-#optim - no instructions...
-#git clone https://github.com/torch/optim
 RUN luarocks install optim
-
-#imagine-nn - no instructions
-#git clone https://github.com/szagoruyko/imagine-nn.git
 RUN luarocks install inn
 
 RUN DEEPMASK=/deepmask
+RUN echo "export DEEPMASK=/deepmask" >> /root/.bashrc
 WORKDIR /
 RUN git clone https://github.com/facebookresearch/deepmask.git $DEEPMASK
 
@@ -258,7 +236,6 @@ RUN wget https://s3.amazonaws.com/deepmask/models/deepmask/model.t7
 RUN mkdir -p $DEEPMASK/pretrained/sharpmask
 WORKDIR $DEEPMASK/pretrained/sharpmask
 RUN wget https://s3.amazonaws.com/deepmask/models/sharpmask/model.t7
-
 
 
 CMD ["/bin/bash"]
