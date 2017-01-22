@@ -30,4 +30,5 @@ setproctitle
 lmdb
 pydot
 dlib
+easydict  #for yonatan 19.1.17
 #nfc   #No distributions at all found for nfc
