@@ -6,7 +6,7 @@
 #then build v2
 #nvidia-docker build -t tg/base_all_machine_learning:2 -f tg_base_all_machine_learning_2.Dockerfile .
 
-FROM tg/base_all_machine_learning:1
+FROM eu.gcr.io/test-paper-doll/tg/base_all_machine_learning:1
 
 #dlib
 WORKDIR /
