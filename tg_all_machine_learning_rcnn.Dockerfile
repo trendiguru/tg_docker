@@ -127,29 +127,41 @@ RUN apt-get update && apt-get install -y \
 	apt-get autoremove && \
 	rm -rf /var/lib/apt/lists/*
 
-# Install Caffe
-
+# Install Caffe rcnn version
 #repo site changed to faster rcnn instead of main caffe
-#recommneded to do
 #git clone --recursive https://github.com/rbgirshick/py-faster-rcnn.git
+#actaally this one looks more recent  -  https://github.com/Austriker/py-faster-rcnn.git
 
-RUN git clone -b ${CAFFE_VERSION} --recursive https://github.com/rbgirshick/py-faster-rcnn.git
- /root/caffe && \
-	cd /root/caffe && \
-	cat python/requirements.txt | xargs -n1 pip install && \
-	mkdir build && cd build && \
-	#### below is the only line jr changed from the original  at https://github.com/saiprashanths/dl-docker/edit/master/Dockerfile.gpu
-	cmake -DUSE_CUDNN=1 -DBLAS=Open -DBUILD_python=ON -DBUILD_python_layer=ON .. && \
-	make -j"$(nproc)" all && \
-	make install
+RUN git clone -b ${CAFFE_VERSION} --recursive https://github.com/Austriker/py-faster-rcnn.git
+ /root/py-faster-rcnn
+CWD /root/py-faster-rcnn
+RUN pip install -r requirements.txt
+CWD lib
+RUN make python2
+
+#You have to check GPU arch default is sm_35
+#not sure how to do that when using cmake instead of Makefile.config ?
+CWD /root/py-faster-rcnn/caffe
+RUN	mkdir build
+RUN CWD build
+RUN cmake -DUSE_CUDNN=1 -DBLAS=Open -DBUILD_python=ON -DBUILD_python_layer=ON ..
+#in any case after the cmake the GPU arch wound up sm_37 on braini2 (tesla k80)
+
+RUN make -j"$(nproc)" all
+RUN make install
+CWD /root/py-faster-rcnn
 
 # Set up Caffe environment variables
-ENV CAFFE_ROOT=/root/caffe
+ENV CAFFE_ROOT=/root/py-faster-rcnn/caffe
 ENV PYCAFFE_ROOT=$CAFFE_ROOT/python
 ENV PYTHONPATH=$PYCAFFE_ROOT:$PYTHONPATH \
 	PATH=$CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 
 RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
+
+#get precomputed detectors
+RUN ./data/scripts/fetch_faster_rcnn_models.sh
+
 
 
 # Install Theano and set up Theano config (.theanorc) for CUDA and OpenBLAS
