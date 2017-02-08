@@ -25,6 +25,8 @@
 ###push by installing gcloud sdk then along lines of:
 #docker tag tg:base eu.gcr.io/test-paper-doll/tg/base:1
 #gcloud docker push eu.gcr.io/test-paper-doll/tg/base:1
+#maybe just docker push eu.gcr.io/test-paper-doll/tg/base:1
+
 
 ###pull using
 #docker run --rm -ti --volumes-from gcloud-config google/cloud-sdk gcloud auth print-access-token
