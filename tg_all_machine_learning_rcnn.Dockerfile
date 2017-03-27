@@ -133,22 +133,22 @@ RUN apt-get update && apt-get install -y \
 #actaally this one looks more recent  -  https://github.com/Austriker/py-faster-rcnn.git
 
 RUN git clone -b ${CAFFE_VERSION} --recursive https://github.com/Austriker/py-faster-rcnn.git /root/py-faster-rcnn
-CWD /root/py-faster-rcnn
+WORKDIR /root/py-faster-rcnn
 RUN pip install -r requirements.txt
-CWD lib
+WORKDIR lib
 RUN make python2
 
 #You have to check GPU arch default is sm_35
 #not sure how to do that when using cmake instead of Makefile.config ?
-CWD /root/py-faster-rcnn/caffe
+WORKDIR /root/py-faster-rcnn/caffe
 RUN	mkdir build
-RUN CWD build
+WORKDIR build
 RUN cmake -DUSE_CUDNN=1 -DBLAS=Open -DBUILD_python=ON -DBUILD_python_layer=ON ..
 #in any case after the cmake the GPU arch wound up sm_37 on braini2 (tesla k80)
 
 RUN make -j"$(nproc)" all
 RUN make install
-CWD /root/py-faster-rcnn
+WORKDIR /root/py-faster-rcnn
 
 # Set up Caffe environment variables
 ENV CAFFE_ROOT=/root/py-faster-rcnn/caffe
