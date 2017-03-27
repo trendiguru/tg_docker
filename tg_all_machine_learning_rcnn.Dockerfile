@@ -132,8 +132,7 @@ RUN apt-get update && apt-get install -y \
 #git clone --recursive https://github.com/rbgirshick/py-faster-rcnn.git
 #actaally this one looks more recent  -  https://github.com/Austriker/py-faster-rcnn.git
 
-RUN git clone -b ${CAFFE_VERSION} --recursive https://github.com/Austriker/py-faster-rcnn.git
- /root/py-faster-rcnn
+RUN git clone -b ${CAFFE_VERSION} --recursive https://github.com/Austriker/py-faster-rcnn.git /root/py-faster-rcnn
 CWD /root/py-faster-rcnn
 RUN pip install -r requirements.txt
 CWD lib
