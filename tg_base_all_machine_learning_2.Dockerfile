@@ -1,7 +1,6 @@
 #first build the other one (tg_all_ml_dockerfile)
 # nvidia-docker build -t tg/all_machine_learning:1 -f tg_all_machine_learning.Dockerfile .
 #then build this one
-#then build this one
 # nvidia-docker build -t tg/base_all_machine_learning:1 -f tg_base_all_machine_learning.Dockerfile .
 #then build v2
 #nvidia-docker build -t tg/base_all_machine_learning:2 -f tg_base_all_machine_learning_2.Dockerfile .
