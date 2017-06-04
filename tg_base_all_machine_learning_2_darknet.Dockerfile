@@ -18,6 +18,8 @@ RUN sed -i.bak 's/GPU=0/GPU=1/' Makefile
 #actually dont do this as it automatically pos a window which docker doesnt like
 #RUN sed -i.bak 's/OPENCV=0/OPENCV=1/' Makefile
 RUN make
+#get yolo weights
+RUN wget http://pjreddie.com/media/files/yolo.weights
 
 #update repo
 WORKDIR /usr/lib/python2.7/dist-packages/trendi

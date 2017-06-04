@@ -20,4 +20,3 @@ make install && make clean
 ldconfig
 #for some reason the cv2.so isnt put anywhere useful.
 ln -s /opencv/build/lib/cv2.so /usr/lib/python2.7/dist-packages/
-
