@@ -167,13 +167,15 @@ RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_V
 RUN pip --no-cache-dir install git+git://github.com/Lasagne/Lasagne.git@${LASAGNE_VERSION}
 
 
-# Install Torch #
-RUN git clone https://github.com/torch/distro.git /root/torch --recursive
-WORKDIR /root/torch
-#RUN bash install-deps && \
-#	yes no | ./install.sh
 
-RUN  bash install-deps ./install.sh
+# Install Torch #
+#RUN git clone https://github.com/torch/distro.git /root/torch --recursive
+#WORKDIR /root/torch
+
+##RUN bash install-deps && \
+##	yes no | ./install.sh
+
+#RUN  bash install-deps ./install.sh
 
 
 # Export the LUA evironment variables manually
