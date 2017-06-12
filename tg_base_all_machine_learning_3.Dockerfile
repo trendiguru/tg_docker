@@ -52,6 +52,8 @@ RUN apt-get update && \
 		libtiff-dev \
 		libhdf5-dev \
 		nano \
+		liblapacke-dev \
+		checkinstall \
 		screen
 
 #OpenCV
