@@ -12,7 +12,8 @@ FROM tg/all_machine_learning:3
 ENV DEBIAN_FRONTEND=noninteractive
 
 ENV PYTHON_VERSION 2.7
-ENV OPENCV_VERSION 3.1.0
+#ENV OPENCV_VERSION 3.1.0
+ENV OPENCV_VERSION 3.2.0
 ENV NUM_CORES 32
 
 RUN NUM_CORES=$(nproc)
@@ -68,6 +69,8 @@ RUN	rm opencv3.zip
 RUN mkdir /opencv/build
 WORKDIR /opencv/build
 
+#consider removing these from makefile
+#'compute_20', 'sm_20', and 'sm_21'
 
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	-D CMAKE_INSTALL_PREFIX=$(python -c "import sys; print(sys.prefix)") \
@@ -154,7 +157,6 @@ RUN python setup.py install --yes USE_AVX_INSTRUCTIONS
 #update repo
 WORKDIR /usr/lib/python2.7/dist-packages/trendi
 RUN git pull
-
 
 RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrlayers2.py /root/caffe/python
 
