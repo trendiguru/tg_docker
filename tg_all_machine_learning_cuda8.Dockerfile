@@ -1,5 +1,5 @@
 #first build this one
-# nvidia-docker build -t tg/all_machine_learning:1 -f tg_all_machine_learning_cuda8.Dockerfile .
+# nvidia-docker build -t tg/all_machine_learning:3 -f tg_all_machine_learning_cuda8.Dockerfile .
 #
 #original  at https://github.com/saiprashanths/dl-docker/edit/master/Dockerfile.gpu
 
@@ -25,6 +25,7 @@ ARG YOLO_VERSION=master
 #	echo -e "\n\nBuilding your Deep Learning Docker Image...\n"
 
 # Install some dependencies
+#libopenjpeg5 not 2 for ubuntu16
 RUN apt-get update && apt-get install -y \
 		bc \
 		build-essential \
@@ -40,7 +41,7 @@ RUN apt-get update && apt-get install -y \
 		liblcms2-dev \
 		libopenblas-dev \
 		liblapack-dev \
-		libopenjpeg2 \
+		libopenjpeg5 \
 		libpng12-dev \
 		libssl-dev \
 		libtiff5-dev \
