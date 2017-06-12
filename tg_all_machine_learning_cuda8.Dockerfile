@@ -169,6 +169,7 @@ RUN pip --no-cache-dir install git+git://github.com/Lasagne/Lasagne.git@${LASAGN
 
 
 # Install Torch #
+#this isnt working since install.sh has a sudo command
 #RUN git clone https://github.com/torch/distro.git /root/torch --recursive
 #WORKDIR /root/torch
 
@@ -201,9 +202,23 @@ RUN pip --no-cache-dir install git+git://github.com/Lasagne/Lasagne.git@${LASAGN
 #	luarocks make
 
 #yolo
-RUN git clone https://github.com/pjreddie/darknet /root/darknet && \
-	cd /root/darknet && \
-	make
+RUN git clone https://github.com/pjreddie/darknet /root/darknet
+WORKDIR /root/darknet
+#set opencv on  allowing viewing images/detections - prob. not necessary
+#actually dont do this as it automatically pos a window which docker doesnt like
+#RUN sed -i.bak 's/OPENCV=0/OPENCV=1/' Makefile
+#set gpu on
+RUN sed -i.bak 's/GPU=0/GPU=1/' Makefile
+RUN sed -i.bak 's/CUDNN=0/CUDNN=1/' Makefile
+RUN	make
+
+#get yolo weights
+RUN wget http://pjreddie.com/media/files/yolo.weights
+
+#update repo
+WORKDIR /usr/lib/python2.7/dist-packages/trendi
+RUN git pull
+
 
 
 # Jupyter has issues with being run directly: https://github.com/ipython/ipython/issues/7062
