@@ -1,6 +1,8 @@
 #first build this one
 # nvidia-docker build -t tg/all_machine_learning:3 -f tg_all_machine_learning_cuda8.Dockerfile .
-#
+#then
+# nvidia-docker build -t tg/base_all_machine_learning:3 -f tg_base_all_machine_learning_3.Dockerfile .
+
 #original  at https://github.com/saiprashanths/dl-docker/edit/master/Dockerfile.gpu
 
 FROM nvidia/cuda:8.0-cudnn5-devel
