@@ -168,7 +168,7 @@ RUN pip --no-cache-dir install git+git://github.com/Lasagne/Lasagne.git@${LASAGN
 
 
 # Install Torch #
-RUN git clone https://github.com/torch/distro.git /root/torch --recursive && \
+RUN git clone https://github.com/torch/distro.git /root/torch --recursive
 WORKDIR /root/torch
 RUN bash install-deps && \
 	yes no | ./install.sh
