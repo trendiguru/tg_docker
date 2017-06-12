@@ -167,7 +167,7 @@ RUN pip --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_V
 RUN pip --no-cache-dir install git+git://github.com/Lasagne/Lasagne.git@${LASAGNE_VERSION}
 
 
-# Install Torch
+# Install Torch #
 RUN git clone https://github.com/torch/distro.git /root/torch --recursive && \
 	cd /root/torch
 RUN bash install-deps && \
