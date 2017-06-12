@@ -217,9 +217,6 @@ RUN wget http://pjreddie.com/media/files/yolo.weights
 #those are prob same as https://pjreddie.com/media/files/yolo.weights
 #conv weights from extraction model
 RUN wget https://pjreddie.com/media/files/darknet19_448.conv.23
-#update repo
-WORKDIR /usr/lib/python2.7/dist-packages/trendi
-RUN git pull
 
 
 
