@@ -3,12 +3,12 @@
 #
 #original  at https://github.com/saiprashanths/dl-docker/edit/master/Dockerfile.gpu
 
-FROM nvidia/cuda:8.0-cudnn6-devel
-#also available , cuda8 + cudnn5
+FROM nvidia/cuda:8.0-cudnn5-devel
+#also available , cuda8 + cudnn6
 
 MAINTAINER Sai Soundararaj <saip@outlook.com>
 
-#update these if cuda8 cudnn6 works
+#update these if cuda8 cudnn5 works
 ARG THEANO_VERSION=rel-0.8.2
 ARG TENSORFLOW_VERSION=0.8.0
 ARG TENSORFLOW_ARCH=gpu
