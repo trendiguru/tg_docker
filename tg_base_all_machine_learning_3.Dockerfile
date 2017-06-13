@@ -94,7 +94,8 @@ RUN make -j24
 RUN make install && make clean
 RUN ldconfig
 #for some reason the cv2.so isnt put anywhere useful.
-RUN ln -s /opencv/build/lib/cv2.so /usr/lib/python2.7/dist-packages/
+#seems to work now ( in v3) and below line fails due to file exsiting
+#RUN ln -s /opencv/build/lib/cv2.so /usr/lib/python2.7/dist-packages/
 
 
 WORKDIR /
