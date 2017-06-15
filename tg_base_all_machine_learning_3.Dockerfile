@@ -133,10 +133,7 @@ RUN apt-get update
 
 #jeremy convenience
 RUN echo "0,20,40 * * * * /usr/lib/python2.7/trendi/classifier_stuff/auto_progress_plots.sh" >> /var/spool/cron/crontabs/root
-#RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrlayers.py /root/caffe/python
 RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrlayers2.py /root/caffe/python
-#RUN ln -s /usr/lib/python2.7/dist-packacges/trendi/classifier_stuff/caffe_nns/surgery.py /root/caffe/python
-#RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/score.py /root/caffe/python
 RUN echo "alias gp='git -C /usr/lib/python2.7/dist-packages/trendi pull'" >> /root/.bashrc
 RUN echo "alias tgj='/usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns'" >> /root/.bashrc
 RUN echo "alias tgd='/usr/lib/python2.7/dist-packages/trendi'" >> /root/.bashrc
@@ -152,7 +149,6 @@ RUN python setup.py install --yes USE_AVX_INSTRUCTIONS
 WORKDIR /usr/lib/python2.7/dist-packages/trendi
 RUN git pull
 
-RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrlayers2.py /root/caffe/python
 
 CMD ["bash"]
 
