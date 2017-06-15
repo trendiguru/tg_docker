@@ -1,6 +1,6 @@
-#first build this one
+#first build the other one
 # nvidia-docker build -t tg/all_machine_learning:3 -f tg_all_machine_learning_cuda8.Dockerfile .
-#then
+#then build this one
 # nvidia-docker build -t tg/base_all_machine_learning:3 -f tg_base_all_machine_learning_3.Dockerfile .
 
 
@@ -142,15 +142,6 @@ RUN echo "alias tgj='/usr/lib/python2.7/dist-packages/trendi/classifier_stuff/ca
 RUN echo "alias tgd='/usr/lib/python2.7/dist-packages/trendi'" >> /root/.bashrc
 RUN echo "alias tgnn='/usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns'" >> /root/.bashrc
 
-#first build the other one (tg_all_ml_dockerfile)
-# nvidia-docker build -t tg/all_machine_learning:1 -f tg_all_machine_learning.Dockerfile .
-#then build this one
-# nvidia-docker build -t tg/base_all_machine_learning:1 -f tg_base_all_machine_learning.Dockerfile .
-#then build v2
-#nvidia-docker build -t tg/base_all_machine_learning:2 -f tg_base_all_machine_learning_2.Dockerfile .
-
-FROM eu.gcr.io/test-paper-doll/tg/base_all_machine_learning:1
-
 #dlib
 WORKDIR /
 RUN git clone https://github.com/davisking/dlib.git
@@ -165,7 +156,4 @@ RUN ln -s /usr/lib/python2.7/dist-packages/trendi/classifier_stuff/caffe_nns/jrl
 
 CMD ["bash"]
 
-
-
-CMD ["bash"]
 
