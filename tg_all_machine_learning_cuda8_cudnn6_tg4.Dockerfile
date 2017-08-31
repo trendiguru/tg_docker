@@ -111,7 +111,10 @@ RUN pip --no-cache-dir install --upgrade ipython && \
 
 # Install TensorFlow
 #see https://www.tensorflow.org/install/install_linux
-#RUN apt-get install -y libcupti-dev #wtf The command '/bin/sh -c apt-get install -y libcupti-dev' returned a non-zero code: 100
+
+RUN echo hello
+RUN apt-get update
+RUN apt-get install -y libcupti-dev  #wtf The command '/bin/sh -c apt-get install -y libcupti-dev' returned a non-zero code: 100
 RUN  apt-get install -y python-pip python-dev
 RUN pip install tensorflow
 
