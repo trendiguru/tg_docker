@@ -12,7 +12,7 @@ MAINTAINER Sai Soundararaj <saip@outlook.com>
 
 #update these if cuda8 cudnn5 works
 ARG THEANO_VERSION=rel-0.8.2
-ARG TENSORFLOW_VERSION=0.8.0
+ARG TENSORFLOW_VERSION=0.8.  #pip installs the latest version (currently 1.3 as of 31 aug 2017)
 ARG TENSORFLOW_ARCH=gpu
 ARG KERAS_VERSION=1.0.3
 ARG LASAGNE_VERSION=v0.1
