@@ -1,7 +1,7 @@
 #first build this one
-# nvidia-docker build -t tg/all_machine_learning:3 -f tg_all_machine_learning_cuda8.Dockerfile .
+# nvidia-docker build -t tg/all_machine_learning:4 -f tg_all_machine_learning_cuda8_cudnn6_tg4.Dockerfile .
 #then
-# nvidia-docker build -t tg/base_all_machine_learning:3 -f tg_base_all_machine_learning_3.Dockerfile .
+# nvidia-docker build -t tg/base_all_machine_learning: -f tg_base_all_machine_learning_.Dockerfile .
 
 #original  at https://github.com/saiprashanths/dl-docker/edit/master/Dockerfile.gpu
 
@@ -110,8 +110,13 @@ RUN pip --no-cache-dir install --upgrade ipython && \
 
 
 # Install TensorFlow
-RUN pip --no-cache-dir install \
-	https://storage.googleapis.com/tensorflow/linux/${TENSORFLOW_ARCH}/tensorflow-${TENSORFLOW_VERSION}-cp27-none-linux_x86_64.whl
+#see https://www.tensorflow.org/install/install_linux
+RUN apt-get install -y libcupti-dev
+RUN  apt-get install -y python-pip python-dev
+RUN pip install tensorflow
+
+#RUN pip --no-cache-dir install \
+#	https://storage.googleapis.com/tensorflow/linux/${TENSORFLOW_ARCH}/tensorflow-${TENSORFLOW_VERSION}-cp27-none-linux_x86_64.whl
 
 
 # Install dependencies for Caffe
